@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinéraire Week-end - Puy du Fou</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        h1, h2, .theme-font { 
+            font-family: 'Cinzel', serif; 
+        }
+        /* Custom scrollbar for table */
+        .table-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .table-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .table-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .table-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        
+        /* Force la disparition des détails masqués, même sur écran d'ordinateur */
+        tr.details-row.hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    
+    <div class="max-w-6xl mx-auto space-y-8">
+        
+        <!-- En-tête -->
+        <header class="text-center space-y-4">
+            <div class="inline-block bg-red-900 text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase mb-2">
+                Planification Logistique
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-red-950 theme-font">Itinéraire Puy du Fou</h1>
+            <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                Programme optimisé pour 4 adultes sur un week-end (sans Pass Émotion). Cet itinéraire minimise vos déplacements et respecte le délai de 45 minutes avant chaque représentation.
+            </p>
+        </header>
+
+        <!-- Filtres par jour (Mobile Friendly) -->
+        <div class="flex flex-wrap gap-3 justify-center mb-4">
+            <button onclick="filterDay('all')" id="btn-all" class="filter-btn bg-red-950 text-white px-6 py-2 rounded-full font-medium shadow-md transition-colors text-sm sm:text-base">Tout le week-end</button>
+            <button onclick="filterDay('sam')" id="btn-sam" class="filter-btn bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Samedi</button>
+            <button onclick="filterDay('dim')" id="btn-dim" class="filter-btn bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Dimanche</button>
+        </div>
+
+        <!-- Tableau Principal -->
+        <div class="bg-transparent md:bg-white md:rounded-2xl md:shadow-xl md:border md:border-stone-200 overflow-hidden">
+            <div class="w-full">
+                <table class="w-full text-left border-collapse block md:table">
+                    <thead class="hidden md:table-header-group bg-red-950 text-white">
+                        <tr>
+                            <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider w-24">Jour</th>
+                            <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider w-40">Créneau</th>
+                            <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider">Activité / Spectacle</th>
+                            <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider w-48">Zone</th>
+                            <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider">Conseil Logistique</th>
+                        </tr>
+                    </thead>
+                    <tbody class="block md:table-row-group divide-y divide-stone-100 md:divide-none">
+                        
+                        <!-- SAMEDI -->
+                        <!-- 1. Le Dernier Panache -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-1', 'icon-sam-1')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">09h15 / 10h00</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">09h15 / 10h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Dernier Panache</span>
+                                <span id="icon-sam-1" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Entrée / Bourg 1900
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Idéal à faire dès l'ouverture.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-1" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Suivez le destin glorieux de François-Athanase Charette de La Contrie, héros de la Guerre d'Indépendance Américaine, dont la vie va basculer en 1793 dans un ultime combat pour la liberté.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> 34 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Intérieur (Tribune tournante)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 2. Le Signe du Triomphe -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-2', 'icon-sam-2')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">11h00 / 11h45</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">11h00 / 11h45</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Signe du Triomphe</span>
+                                <span id="icon-sam-2" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est (Stadium)
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>10 min de marche depuis l'entrée.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-2" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Plongez dans l'arène du Stadium Gallo-Romain. Pour sauver leur vie, des prisonniers gaulois doivent remporter les Jeux du Cirque sous les yeux du gouverneur romain.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> 40 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Extérieur (Tribunes couvertes)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 3. Déjeuner -->
+                        <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 transition-colors p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-3', 'icon-sam-3')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">12h30 / 14h00</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">12h30 / 14h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 text-lg md:text-base">
+                                Déjeuner : L'Écuyer Tranchant
+                                <span id="icon-sam-3" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Buffet à la sortie du Stadium.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-3" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos de ce restaurant :</strong> Dans les majestueuses cuisines du château, goûtez aux viandes rôties et aux mets généreux préparés par l'Écuyer Tranchant dans une atmosphère très animée.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-stone-300 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">🍽 Type :</strong> Buffet à volonté</div>
+                                        <div><strong class="text-stone-900">📍 Espace :</strong> Intérieur climatisé</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 4. Les Vikings -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-4', 'icon-sam-4')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">14h15 / 15h00</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">14h15 / 15h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Les Vikings</span>
+                                <span id="icon-sam-4" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est (Fort)
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Zone voisine du déjeuner.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-4" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Les cloches du Fort de l'An Mil sonnent l'alerte ! Surgissant de l'eau, les drakkars attaquent le paisible village dans un déluge de cascades et d'effets spéciaux spectaculaires.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> 26 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Extérieur (Tribunes non couvertes)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 5. Le Bal des Oiseaux Fantômes -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-5', 'icon-sam-5')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">16h00 / 16h45</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">16h00 / 16h45</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Bal des Oiseaux Fantômes</span>
+                                <span id="icon-sam-5" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Nord
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Traversée de la forêt. Arrivez tôt.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-5" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Aliénor se réveille dans les ruines du vieux château et ses souvenirs font surgir une nuée de faucons, hiboux et vautours qui vous frôlent de leurs ailes majestueuses.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> 33 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Extérieur</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 6. Le Secret de la Lance -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-6', 'icon-sam-6')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">17h45 / 18h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">17h45 / 18h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Secret de la Lance</span>
+                                <span id="icon-sam-6" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>À proximité immédiate des Oiseaux.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-6" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Au XVe siècle, la jeune bergère Marguerite doit défendre seule le château fort, aidée par une lance aux pouvoirs magiques laissée par Jeanne d'Arc, lors d'une épopée chevaleresque.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> 29 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Extérieur (Tribunes couvertes)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 7. Temps libre & Dîner -->
+                        <tr class="itinerary-row block md:table-row bg-stone-50 border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 transition-colors p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-7', 'icon-sam-7')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">PAUSE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">19h15 / 21h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">19h15 / 21h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 text-lg md:text-base">
+                                Temps libre & Dîner
+                                <span id="icon-sam-7" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Bourg 1900
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Détente dans les boutiques.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-7" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-full">
+                                        <strong class="text-stone-900 block mb-1">À propos du Bourg 1900 :</strong> Promenez-vous dans ce village authentique à l'architecture Belle Époque. Profitez de ce temps pour vous restaurer de manière libre (brasserie, restauration rapide ou pique-nique) avant le spectacle nocturne.
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 8. Les Noces de Feu -->
+                        <tr class="itinerary-row block md:table-row bg-orange-50 md:bg-orange-50/30 border border-orange-200 md:border-none rounded-xl md:rounded-none mb-8 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-100 transition-colors group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-8', 'icon-sam-8')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-orange-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-800 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">NOCTURNE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">21h45 / 22h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">21h45 / 22h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-orange-900 text-xl md:text-lg theme-font">Les Noces de Feu</span>
+                                <span id="icon-sam-8" class="float-right md:float-none md:ml-2 text-orange-600 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2">Zone:</span>Centre (Lac)
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic font-medium mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Flânez 20 min au Bourg après pour éviter les bouchons du parking.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-8" class="details-row hidden block md:table-row bg-orange-100 md:bg-orange-100/50 border-b border-orange-200 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-800">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-orange-900 block mb-1">À propos du spectacle :</strong> À la tombée de la nuit, assistez au plus romantique des mariages. Muses et farfadets célèbrent sur l'étang les noces fantastiques du pianiste virtuose et de la muse violoniste.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-orange-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-orange-900">⏱ Durée :</strong> 30 minutes</div>
+                                        <div><strong class="text-orange-900">📍 Type :</strong> Extérieur (Lac)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- LIGNE DE SEPARATION (Desktop only) -->
+                        <tr id="row-separator" class="hidden md:table-row">
+                            <td colspan="5" class="bg-stone-200 h-1 p-0"></td>
+                        </tr>
+
+                        <!-- DIMANCHE -->
+                        <!-- 1. Le Premier Royaume -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-1', 'icon-dim-1')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">09h30 / 10h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">09h30 / 10h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Le Premier Royaume</span>
+                                <span id="icon-dim-1" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Sud-Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Premier passage, faible affluence.
+                            </td>
+                        </tr>
+                        <tr id="details-dim-1" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Au Ve siècle, l'Empire Romain s'effondre. Suivez le destin de Clovis le roi Franc à travers un parcours immersif bluffant, mêlant décors somptueux et effets aquatiques.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> ~ 20 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Intérieur (Parcours continu)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 2. Les Amoureux de Verdun -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-2', 'icon-dim-2')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">10h30 / 11h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">10h30 / 11h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Les Amoureux de Verdun</span>
+                                <span id="icon-dim-2" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Parcours continu dans les tranchées.
+                            </td>
+                        </tr>
+                        <tr id="details-dim-2" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Hiver 1916. Vous êtes invités à cheminer dans les tranchées avec les Poilus. À la veille de Noël, la fumée envahit les galeries et le sol tremble sous les bombardements.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> ~ 15 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Intérieur (Parcours continu)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 3. La Renaissance du Château -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-3', 'icon-dim-3')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">11h30 / 12h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">11h30 / 12h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">La Renaissance du Château</span>
+                                <span id="icon-dim-3" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Visite du château historique.
+                            </td>
+                        </tr>
+                        <tr id="details-dim-3" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos du spectacle :</strong> Oubliez tout ce que vous croyez savoir sur les châteaux. Les tableaux vous parlent, les miroirs vous observent, et les fantômes dansent dans ce bâtiment original chargé d'histoire.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> ~ 20 minutes</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Intérieur (Visite immersive)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 4. Déjeuner Nomade -->
+                        <tr class="itinerary-row block md:table-row bg-stone-50 border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 transition-colors p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-4', 'icon-dim-4')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">12h30 / 13h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">12h30 / 13h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 text-lg md:text-base">
+                                Déjeuner : Roulotte de la Gare
+                                <span id="icon-dim-4" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Bourg 1900
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Option nomade (sandwichs/fouées).
+                            </td>
+                        </tr>
+                        <tr id="details-dim-4" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos de la restauration :</strong> Parfait pour manger sur le pouce afin de profiter pleinement de votre après-midi : fouées, sandwichs et snacks à emporter.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-stone-300 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">🍽 Type :</strong> Restauration rapide</div>
+                                        <div><strong class="text-stone-900">📍 Espace :</strong> Vente à emporter / Extérieur</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 5. Artisans -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-5', 'icon-dim-5')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">13h45 / 15h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">13h45 / 15h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Village XVIIIème & Artisans</span>
+                                <span id="icon-dim-5" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Sud
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Rencontre avec les artisans d'art.
+                            </td>
+                        </tr>
+                        <tr id="details-dim-5" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos de cette zone :</strong> Déambulez dans un authentique village du XVIIIe siècle où le temps s'est arrêté. Observez le travail minutieux des artisans d'art : tailleur de pierre, forgeron, maître-verrier et enlumineur.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> Temps libre</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Extérieur / Ateliers</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 6. Nature -->
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-6', 'icon-dim-6')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">15h45 / 17h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">15h45 / 17h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Clairière aux Daims & Nature</span>
+                                <span id="icon-dim-6" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Forêt
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Balade calme avant le départ.
+                            </td>
+                        </tr>
+                        <tr id="details-dim-6" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 border-b border-stone-200 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 block mb-1">À propos de cette promenade :</strong> Avant de reprendre la route, ressourcez-vous dans cette vaste clairière boisée où les daims évoluent en toute sérénité. Une véritable bulle de nature au cœur du parc.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900">⏱ Durée :</strong> Temps libre</div>
+                                        <div><strong class="text-stone-900">📍 Type :</strong> Extérieur (Nature)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section Info / Sources -->
+        <div class="bg-stone-200 text-stone-700 p-6 rounded-xl text-sm border border-stone-300">
+            <h3 class="font-bold mb-2 uppercase tracking-wide">Note Importante</h3>
+            <p class="mb-4">Les horaires des spectacles varient chaque jour. Il est impératif de vérifier les horaires exacts la veille de votre visite via l'application mobile ou le site officiel.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Fonctionnalité pour l'Accordéon (détails des spectacles)
+        function toggleDetails(detailsId, iconId) {
+            const detailsRow = document.getElementById(detailsId);
+            const icon = document.getElementById(iconId);
+            
+            if (detailsRow.classList.contains('hidden')) {
+                // Afficher
+                detailsRow.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+                // Pour que le filtre fonctionne, on ajoute un marqueur
+                detailsRow.classList.add('is-expanded'); 
+            } else {
+                // Cacher
+                detailsRow.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+                detailsRow.classList.remove('is-expanded');
+            }
+        }
+
+        // Fonctionnalité de filtrage par jour (mise à jour pour inclure les accordéons)
+        function filterDay(day) {
+            // Mettre à jour l'apparence des boutons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-red-950', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-stone-600', 'border-stone-200');
+            });
+            const activeBtn = document.getElementById('btn-' + day);
+            activeBtn.classList.remove('bg-white', 'text-stone-600', 'border-stone-200');
+            activeBtn.classList.add('bg-red-950', 'text-white', 'shadow-md');
+
+            // Filtrer les lignes principales ET les lignes de détails
+            const mainRows = document.querySelectorAll('.itinerary-row');
+            const detailRows = document.querySelectorAll('.details-row');
+            const sep = document.getElementById('row-separator');
+
+            // Affichage des lignes principales
+            mainRows.forEach(row => {
+                if (day === 'all' || row.getAttribute('data-day') === day) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Affichage des lignes de détails (seulement si elles sont étendues ET dans le bon jour)
+            detailRows.forEach(row => {
+                if ((day === 'all' || row.getAttribute('data-day') === day) && row.classList.contains('is-expanded')) {
+                    row.style.display = ''; 
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (sep) {
+                sep.style.display = day === 'all' ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>
