@@ -44,12 +44,19 @@
             </p>
         </header>
 
+        <!-- Filtres par jour (Mobile Friendly) -->
+        <div class="flex flex-wrap gap-3 justify-center mb-4">
+            <button onclick="filterDay('all')" id="btn-all" class="filter-btn bg-red-950 text-white px-6 py-2 rounded-full font-medium shadow-md transition-colors text-sm sm:text-base">Tout le week-end</button>
+            <button onclick="filterDay('sam')" id="btn-sam" class="filter-btn bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Samedi</button>
+            <button onclick="filterDay('dim')" id="btn-dim" class="filter-btn bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Dimanche</button>
+        </div>
+
         <!-- Tableau Principal -->
-        <div class="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
-            <div class="overflow-x-auto table-scroll">
-                <table class="w-full text-left border-collapse whitespace-nowrap min-w-[800px]">
-                    <thead>
-                        <tr class="bg-red-950 text-white">
+        <div class="bg-transparent md:bg-white md:rounded-2xl md:shadow-xl md:border md:border-stone-200 overflow-hidden">
+            <div class="w-full">
+                <table class="w-full text-left border-collapse block md:table">
+                    <thead class="hidden md:table-header-group bg-red-950 text-white">
+                        <tr>
                             <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider w-24">Jour</th>
                             <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider w-40">Créneau</th>
                             <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider">Activité / Spectacle</th>
@@ -57,113 +64,261 @@
                             <th class="py-4 px-6 font-semibold text-sm uppercase tracking-wider">Conseil Logistique</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-stone-100">
+                    <tbody class="block md:table-row-group divide-y divide-stone-100 md:divide-none">
                         
                         <!-- SAMEDI -->
-                        <tr class="hover:bg-orange-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">09h15 / 10h00</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-orange-700 transition-colors">Le Dernier Panache</span></td>
-                            <td class="py-4 px-6 text-stone-600">Entrée / Bourg 1900</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Idéal à faire dès l'ouverture.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">09h15 / 10h00</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">09h15 / 10h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Dernier Panache</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Entrée / Bourg 1900
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Idéal à faire dès l'ouverture.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-orange-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">11h00 / 11h45</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-orange-700 transition-colors">Le Signe du Triomphe</span></td>
-                            <td class="py-4 px-6 text-stone-600">Est (Stadium)</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">10 min de marche depuis l'entrée.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">11h00 / 11h45</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">11h00 / 11h45</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Signe du Triomphe</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est (Stadium)
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>10 min de marche depuis l'entrée.
+                            </td>
                         </tr>
-                        <tr class="bg-stone-50 hover:bg-stone-100 transition-colors">
-                            <td class="py-4 px-6"><span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">12h30 / 14h00</td>
-                            <td class="py-4 px-6 font-semibold text-stone-700">Déjeuner : L'Écuyer Tranchant</td>
-                            <td class="py-4 px-6 text-stone-600">Est</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Buffet à la sortie du Stadium.</td>
+                        <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 transition-colors p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">12h30 / 14h00</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">12h30 / 14h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 text-lg md:text-base">Déjeuner : L'Écuyer Tranchant</td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Buffet à la sortie du Stadium.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-orange-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">14h15 / 15h00</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-orange-700 transition-colors">Les Vikings</span></td>
-                            <td class="py-4 px-6 text-stone-600">Est (Fort)</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Zone voisine du déjeuner.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">14h15 / 15h00</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">14h15 / 15h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Les Vikings</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est (Fort)
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Zone voisine du déjeuner.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-orange-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">16h00 / 16h45</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-orange-700 transition-colors">Bal des Oiseaux Fantômes</span></td>
-                            <td class="py-4 px-6 text-stone-600">Nord</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Traversée de la forêt. Arrivez tôt.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">16h00 / 16h45</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">16h00 / 16h45</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Bal des Oiseaux Fantômes</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Nord
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Traversée de la forêt. Arrivez tôt.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-orange-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">17h45 / 18h30</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-orange-700 transition-colors">Le Secret de la Lance</span></td>
-                            <td class="py-4 px-6 text-stone-600">Ouest</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">À proximité immédiate des Oiseaux.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 transition-colors group p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">17h45 / 18h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">17h45 / 18h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Secret de la Lance</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>À proximité immédiate des Oiseaux.
+                            </td>
                         </tr>
-                        <tr class="bg-stone-50 hover:bg-stone-100 transition-colors">
-                            <td class="py-4 px-6"><span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">PAUSE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">19h15 / 21h30</td>
-                            <td class="py-4 px-6 font-semibold text-stone-700">Temps libre & Dîner</td>
-                            <td class="py-4 px-6 text-stone-600">Bourg 1900</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Détente dans les boutiques.</td>
+                        <tr class="itinerary-row block md:table-row bg-stone-50 border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 transition-colors p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">PAUSE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">19h15 / 21h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">19h15 / 21h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 text-lg md:text-base">Temps libre & Dîner</td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Bourg 1900
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Détente dans les boutiques.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-orange-50 transition-colors group bg-orange-50/30">
-                            <td class="py-4 px-6"><span class="bg-orange-800 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">NOCTURNE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">21h45 / 22h30</td>
-                            <td class="py-4 px-6"><span class="font-bold text-orange-900 text-lg theme-font">Les Noces de Feu</span></td>
-                            <td class="py-4 px-6 text-stone-600">Centre (Lac)</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic font-medium">Flânez 20 min au Bourg après pour éviter les bouchons du parking.</td>
+                        <tr class="itinerary-row block md:table-row bg-orange-50 md:bg-orange-50/30 border border-orange-200 md:border-none rounded-xl md:rounded-none mb-8 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-100 transition-colors group p-4 md:p-0" data-day="sam">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-orange-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-800 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">NOCTURNE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">21h45 / 22h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">21h45 / 22h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-orange-900 text-xl md:text-lg theme-font">Les Noces de Feu</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2">Zone:</span>Centre (Lac)
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic font-medium mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Flânez 20 min au Bourg après pour éviter les bouchons du parking.
+                            </td>
                         </tr>
 
-                        <!-- LIGNE DE SEPARATION -->
-                        <tr>
-                            <td colspan="5" class="bg-stone-200 h-1"></td>
+                        <!-- LIGNE DE SEPARATION (Desktop only) -->
+                        <tr id="row-separator" class="hidden md:table-row">
+                            <td colspan="5" class="bg-stone-200 h-1 p-0"></td>
                         </tr>
 
                         <!-- DIMANCHE -->
-                        <tr class="hover:bg-green-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">09h30 / 10h15</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-emerald-700 transition-colors">Le Premier Royaume</span></td>
-                            <td class="py-4 px-6 text-stone-600">Sud-Ouest</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Premier passage, faible affluence.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0" data-day="dim">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">09h30 / 10h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">09h30 / 10h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Le Premier Royaume</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Sud-Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Premier passage, faible affluence.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">10h30 / 11h15</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-emerald-700 transition-colors">Les Amoureux de Verdun</span></td>
-                            <td class="py-4 px-6 text-stone-600">Ouest</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Parcours continu dans les tranchées.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0" data-day="dim">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">10h30 / 11h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">10h30 / 11h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Les Amoureux de Verdun</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Parcours continu dans les tranchées.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">11h30 / 12h15</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-emerald-700 transition-colors">La Renaissance du Château</span></td>
-                            <td class="py-4 px-6 text-stone-600">Ouest</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Visite du château historique.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0" data-day="dim">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">11h30 / 12h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">11h30 / 12h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">La Renaissance du Château</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Visite du château historique.
+                            </td>
                         </tr>
-                        <tr class="bg-stone-50 hover:bg-stone-100 transition-colors">
-                            <td class="py-4 px-6"><span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">12h30 / 13h30</td>
-                            <td class="py-4 px-6 font-semibold text-stone-700">Déjeuner : Roulotte de la Gare</td>
-                            <td class="py-4 px-6 text-stone-600">Bourg 1900</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Option nomade (sandwichs/fouées).</td>
+                        <tr class="itinerary-row block md:table-row bg-stone-50 border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 transition-colors p-4 md:p-0" data-day="dim">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">12h30 / 13h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">12h30 / 13h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 text-lg md:text-base">Déjeuner : Roulotte de la Gare</td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Bourg 1900
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Option nomade (sandwichs/fouées).
+                            </td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">13h45 / 15h30</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-emerald-700 transition-colors">Village XVIIIème & Artisans</span></td>
-                            <td class="py-4 px-6 text-stone-600">Sud</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Rencontre avec les artisans d'art.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0" data-day="dim">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">13h45 / 15h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">13h45 / 15h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Village XVIIIème & Artisans</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Sud
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Rencontre avec les artisans d'art.
+                            </td>
                         </tr>
-                        <tr class="hover:bg-green-50 transition-colors group">
-                            <td class="py-4 px-6"><span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span></td>
-                            <td class="py-4 px-6 text-stone-600 font-medium">15h45 / 17h30</td>
-                            <td class="py-4 px-6"><span class="font-bold text-stone-900 text-lg theme-font group-hover:text-emerald-700 transition-colors">Clairière aux Daims & Nature</span></td>
-                            <td class="py-4 px-6 text-stone-600">Forêt</td>
-                            <td class="py-4 px-6 text-sm text-stone-500 italic">Balade calme avant le départ.</td>
+                        <tr class="itinerary-row block md:table-row bg-white border border-stone-200 md:border-none md:border-b rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 transition-colors group p-4 md:p-0" data-day="dim">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 font-medium md:hidden text-sm">15h45 / 17h30</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 font-medium">15h45 / 17h30</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Clairière aux Daims & Nature</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Forêt
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Balade calme avant le départ.
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -178,5 +333,34 @@
 
     </div>
 
+    <script>
+        // Fonctionnalité de filtrage par jour (sans appel IA)
+        function filterDay(day) {
+            // Mettre à jour l'apparence des boutons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-red-950', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-stone-600', 'border-stone-200');
+            });
+            const activeBtn = document.getElementById('btn-' + day);
+            activeBtn.classList.remove('bg-white', 'text-stone-600', 'border-stone-200');
+            activeBtn.classList.add('bg-red-950', 'text-white', 'shadow-md');
+
+            // Filtrer les lignes du tableau (qui sont des "cartes" sur mobile)
+            const rows = document.querySelectorAll('.itinerary-row');
+            const sep = document.getElementById('row-separator');
+
+            rows.forEach(row => {
+                if (day === 'all' || row.getAttribute('data-day') === day) {
+                    row.style.display = ''; // Rétablit l'affichage par défaut (flex ou table-row)
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (sep) {
+                sep.style.display = day === 'all' ? '' : 'none';
+            }
+        }
+    </script>
 </body>
 </html>
