@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -33,6 +33,10 @@
             display: none !important;
         }
     </style>
+
+    <!-- Ajout de la librairie cartographique Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body class="bg-stone-100 text-stone-800 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
     
@@ -85,8 +89,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Dernier Panache</span>
                                 <span id="icon-sam-1" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Entrée / Bourg 1900
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Entrée / Bourg 1900
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Idéal à faire dès l'ouverture.
@@ -119,8 +127,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Signe du Triomphe</span>
                                 <span id="icon-sam-2" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est (Stadium)
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Est (Stadium)
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>10 min de marche depuis l'entrée.
@@ -153,8 +165,12 @@
                                 Déjeuner : L'Écuyer Tranchant
                                 <span id="icon-sam-3" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Est
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Buffet à la sortie du Stadium.
@@ -187,8 +203,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Les Vikings</span>
                                 <span id="icon-sam-4" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Est (Fort)
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Est (Fort)
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Zone voisine du déjeuner.
@@ -221,8 +241,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Bal des Oiseaux Fantômes</span>
                                 <span id="icon-sam-5" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Nord
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Nord
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Traversée de la forêt. Arrivez tôt.
@@ -255,8 +279,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-orange-700 transition-colors">Le Secret de la Lance</span>
                                 <span id="icon-sam-6" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Ouest
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>À proximité immédiate des Oiseaux.
@@ -289,8 +317,12 @@
                                 Temps libre & Dîner
                                 <span id="icon-sam-7" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Bourg 1900
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Bourg 1900
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Détente dans les boutiques.
@@ -319,8 +351,12 @@
                                 <span class="font-bold text-orange-900 text-xl md:text-lg theme-font">Les Noces de Feu</span>
                                 <span id="icon-sam-8" class="float-right md:float-none md:ml-2 text-orange-600 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2">Zone:</span>Centre (Lac)
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Centre (Lac)
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic font-medium mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Flânez 20 min au Bourg après pour éviter les bouchons du parking.
@@ -359,8 +395,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Le Premier Royaume</span>
                                 <span id="icon-dim-1" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Sud-Ouest
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Sud-Ouest
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Premier passage, faible affluence.
@@ -393,8 +433,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Les Amoureux de Verdun</span>
                                 <span id="icon-dim-2" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Ouest
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Parcours continu dans les tranchées.
@@ -427,8 +471,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">La Renaissance du Château</span>
                                 <span id="icon-dim-3" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Ouest
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Ouest
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Visite du château historique.
@@ -461,8 +509,12 @@
                                 Déjeuner : Roulotte de la Gare
                                 <span id="icon-dim-4" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Bourg 1900
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Bourg 1900
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Option nomade (sandwichs/fouées).
@@ -495,8 +547,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Village XVIIIème & Artisans</span>
                                 <span id="icon-dim-5" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Sud
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Sud
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Rencontre avec les artisans d'art.
@@ -529,8 +585,12 @@
                                 <span class="font-bold text-stone-900 text-xl md:text-lg theme-font group-hover:text-emerald-700 transition-colors">Clairière aux Daims & Nature</span>
                                 <span id="icon-dim-6" class="float-right md:float-none md:ml-2 text-stone-400 inline-block transition-transform duration-300">▼</span>
                             </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-stone-600 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>Forêt
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2">Zone:</span>
+                                <a href="https://www.puydufou.com/france/fr/plan-du-parc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100" title="Ouvrir le plan interactif">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Forêt
+                                </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 italic mt-2 md:mt-0">
                                 <span class="md:hidden font-semibold text-stone-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Balade calme avant le départ.
@@ -552,6 +612,16 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <!-- Carte Interactive en dur -->
+        <div id="map-container" class="bg-white rounded-2xl shadow-xl border border-stone-200 p-4 md:p-6 scroll-mt-6">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="text-2xl">📍</span>
+                <h2 class="text-xl font-bold text-red-950 theme-font">Carte des Attractions</h2>
+            </div>
+            <div id="park-map" class="w-full h-[400px] rounded-xl border border-stone-300 z-0 relative"></div>
+            <p class="text-xs text-stone-500 mt-3 text-center italic">Les marqueurs et coordonnées sont intégrés "en dur" dans le code pour vous aider à visualiser la distance entre vos spectacles.</p>
         </div>
 
         <!-- Section Info / Sources -->
@@ -620,6 +690,79 @@
                 sep.style.display = day === 'all' ? '' : 'none';
             }
         }
+
+        // --- Logique de la Carte Interactive (Leaflet) ---
+        // 1. Initialisation de la carte centrée sur le parc
+        const map = L.map('park-map', {scrollWheelZoom: false}).setView([46.893, -0.929], 15);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 2. Création d'une icône CSS personnalisée
+        const createPin = (color) => {
+            return L.divIcon({
+                className: 'custom-pin',
+                html: `<div style="background-color: ${color}; width: 18px; height: 18px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 6px rgba(0,0,0,0.6);"></div>`,
+                iconSize: [18, 18],
+                iconAnchor: [9, 9],
+                popupAnchor: [0, -10]
+            });
+        };
+
+        // 3. Données en dur de l'itinéraire (Coordonnées GPS)
+        const markersData = {
+            'panache': { title: 'Le Dernier Panache', coords: [46.8914, -0.9333], color: '#ea580c' },
+            'triomphe': { title: 'Le Signe du Triomphe', coords: [46.8942, -0.9255], color: '#ea580c' },
+            'ecuyer': { title: 'L\'Écuyer Tranchant', coords: [46.8938, -0.9248], color: '#78716c' },
+            'vikings': { title: 'Les Vikings', coords: [46.8940, -0.9275], color: '#ea580c' },
+            'oiseaux': { title: 'Bal des Oiseaux Fantômes', coords: [46.8965, -0.9295], color: '#ea580c' },
+            'lance': { title: 'Le Secret de la Lance', coords: [46.8948, -0.9320], color: '#ea580c' },
+            'bourg_soir': { title: 'Temps libre & Dîner', coords: [46.8918, -0.9320], color: '#78716c' },
+            'noces': { title: 'Les Noces de Feu', coords: [46.8920, -0.9300], color: '#9a3412' },
+            'royaume': { title: 'Le Premier Royaume', coords: [46.8895, -0.9325], color: '#059669' },
+            'verdun': { title: 'Les Amoureux de Verdun', coords: [46.8930, -0.9340], color: '#059669' },
+            'renaissance': { title: 'La Renaissance du Château', coords: [46.8955, -0.9315], color: '#059669' },
+            'gare': { title: 'Roulotte de la Gare', coords: [46.8910, -0.9325], color: '#78716c' },
+            'artisans': { title: 'Village XVIIIème & Artisans', coords: [46.8905, -0.9285], color: '#059669' },
+            'daims': { title: 'Clairière aux Daims & Nature', coords: [46.8970, -0.9240], color: '#059669' }
+        };
+
+        const mapMarkers = {};
+
+        // 4. Placer les tags sur la carte
+        for (const [id, data] of Object.entries(markersData)) {
+            mapMarkers[id] = L.marker(data.coords, {icon: createPin(data.color)})
+                .addTo(map)
+                .bindPopup(`<strong class="text-stone-800">${data.title}</strong>`);
+        }
+
+        // 5. Fonction d'interaction : Cibler la carte
+        function focusOnMap(id) {
+            const marker = mapMarkers[id];
+            if (marker) {
+                document.getElementById('map-container').scrollIntoView({ behavior: 'smooth' });
+                map.setView(marker.getLatLng(), 17);
+                setTimeout(() => marker.openPopup(), 400); // Petit délai pour laisser le temps au scroll
+            }
+        }
+
+        // 6. Remplacement dynamique des anciens liens sans toucher au tableau HTML
+        document.addEventListener('DOMContentLoaded', () => {
+            const zoneLinks = document.querySelectorAll('a[href="https://www.puydufou.com/france/fr/plan-du-parc"]');
+            const orderedIds = Object.keys(markersData); 
+            
+            zoneLinks.forEach((link, index) => {
+                link.href = "javascript:void(0)";
+                link.removeAttribute('target');
+                link.title = "Voir le point sur la carte ci-dessous";
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    focusOnMap(orderedIds[index]);
+                };
+            });
+        });
     </script>
 </body>
 </html>
