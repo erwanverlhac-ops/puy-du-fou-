@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" class="light">
 <head>
     <meta charset="UTF-8">
@@ -69,6 +69,17 @@
 </head>
 <body class="bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-200 min-h-screen py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
     
+    <!-- Notifications Toast (invisibles par défaut) -->
+    <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-800 px-6 py-3 rounded-xl shadow-2xl z-[10000] opacity-0 pointer-events-none transition-opacity duration-300 font-medium text-sm text-center w-max max-w-[90vw]">
+        Message de notification
+    </div>
+
+    <!-- Bouton SOS Partager Position -->
+    <button id="sos-btn" onclick="shareLocation()" class="fixed bottom-4 right-4 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-full shadow-2xl z-[9998] flex items-center gap-2 transition-transform hover:scale-105 border-2 border-white dark:border-stone-800" title="Partager ma position GPS exacte">
+        <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <span class="font-bold text-sm hidden sm:inline">Position</span>
+    </button>
+
     <!-- Bouton bascule Dark Mode -->
     <button onclick="toggleDarkMode()" class="fixed top-4 right-4 md:top-8 md:right-8 bg-white dark:bg-stone-800 text-stone-800 dark:text-yellow-400 p-3 rounded-full shadow-lg border border-stone-200 dark:border-stone-700 z-[9999] hover:scale-110 transition-transform" title="Basculer le thème">
         <!-- Icône Lune (affichée en mode clair) -->
@@ -233,7 +244,7 @@
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Buffet à la sortie du Stadium.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Buffet à la Citadelle.
                             </td>
                         </tr>
                         <tr id="details-sam-3" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 dark:bg-stone-700/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
@@ -737,6 +748,67 @@
             }
         }
 
+        // --- Notifications Toast (Alternative à alert()) ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // --- Partage de position GPS (SOS) ---
+        function shareLocation() {
+            const btn = document.getElementById('sos-btn');
+            const originalHtml = btn.innerHTML;
+            
+            if (!navigator.geolocation) {
+                showToast("Votre navigateur ne supporte pas la géolocalisation.");
+                return;
+            }
+
+            // État de chargement
+            btn.innerHTML = `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span class="font-bold text-sm hidden sm:inline">Recherche...</span>`;
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    const mapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+                    const shareText = "📍 Je suis ici au Puy du Fou ! Rejoins-moi :";
+
+                    btn.innerHTML = originalHtml; // Réinitialise le bouton
+
+                    // Utilisation de l'API de partage native si dispo (mobile)
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Ma position au Puy du Fou',
+                            text: shareText,
+                            url: mapUrl
+                        }).catch((error) => {
+                            console.log('Partage annulé ou échoué', error);
+                        });
+                    } else {
+                        // Fallback pour les ordinateurs ou navigateurs non compatibles (copie dans le presse-papier)
+                        navigator.clipboard.writeText(`${shareText} ${mapUrl}`).then(() => {
+                            showToast("Lien Google Maps copié dans le presse-papier !");
+                        }).catch(() => {
+                            showToast("Impossible de partager. Voici vos coordonnées : " + lat + ", " + lon);
+                        });
+                    }
+                },
+                (error) => {
+                    btn.innerHTML = originalHtml;
+                    let errorMsg = "Erreur de géolocalisation.";
+                    if (error.code === 1) errorMsg = "Veuillez autoriser l'accès à votre position GPS.";
+                    if (error.code === 3) errorMsg = "Le délai d'attente pour la position a expiré.";
+                    showToast(errorMsg);
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+
         // --- Fonctionnalité pour l'Accordéon (détails des spectacles) ---
         function toggleDetails(detailsId, iconId) {
             const detailsRow = document.getElementById(detailsId);
@@ -747,6 +819,7 @@
                 detailsRow.classList.remove('hidden');
                 icon.style.transform = 'rotate(180deg)';
                 detailsRow.classList.add('is-expanded'); 
+                detailsRow.style.display = ''; // CORRECTION : Force l'affichage si un filtre l'avait bloqué
             } else {
                 // Cacher
                 detailsRow.classList.add('hidden');
