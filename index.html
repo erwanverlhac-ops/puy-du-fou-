@@ -88,7 +88,7 @@
         <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
     </button>
 
-    <div class="max-w-6xl mx-auto space-y-8 mt-6 md:mt-0">
+    <div class="max-w-6xl mx-auto space-y-8 mt-6 md:mt-0 pb-16">
         
         <!-- En-tête -->
         <header class="text-center space-y-4">
@@ -138,7 +138,6 @@
                     <tbody class="block md:table-row-group divide-y divide-stone-100 md:divide-none">
                         
                         <!-- SAMEDI -->
-                        <!-- 1. Le Dernier Panache -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-1', 'icon-sam-1')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -148,7 +147,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h15 / 10h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('panache', event)" data-task="panache" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('panache', event)" data-task="panache" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Dernier Panache</span>
@@ -179,7 +178,6 @@
                             </td>
                         </tr>
 
-                        <!-- 2. Le Signe du Triomphe -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-2', 'icon-sam-2')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -189,7 +187,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h00 / 11h45</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('triomphe', event)" data-task="triomphe" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('triomphe', event)" data-task="triomphe" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Signe du Triomphe</span>
@@ -220,7 +218,6 @@
                             </td>
                         </tr>
 
-                        <!-- 3. Déjeuner -->
                         <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-3', 'icon-sam-3')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -230,7 +227,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h30 / 14h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('ecuyer', event)" data-task="ecuyer" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('ecuyer', event)" data-task="ecuyer" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Déjeuner : L'Écuyer Tranchant</span>
@@ -261,7 +258,6 @@
                             </td>
                         </tr>
 
-                        <!-- 4. Les Vikings -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-4', 'icon-sam-4')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -271,7 +267,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">14h15 / 15h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('vikings', event)" data-task="vikings" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('vikings', event)" data-task="vikings" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Les Vikings</span>
@@ -302,7 +298,6 @@
                             </td>
                         </tr>
 
-                        <!-- 5. Le Bal des Oiseaux Fantômes -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-5', 'icon-sam-5')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -312,7 +307,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">16h00 / 16h45</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('oiseaux', event)" data-task="oiseaux" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('oiseaux', event)" data-task="oiseaux" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Bal des Oiseaux Fantômes</span>
@@ -343,7 +338,6 @@
                             </td>
                         </tr>
 
-                        <!-- 6. Le Secret de la Lance -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-6', 'icon-sam-6')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -353,7 +347,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">17h45 / 18h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('lance', event)" data-task="lance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('lance', event)" data-task="lance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Secret de la Lance</span>
@@ -384,7 +378,6 @@
                             </td>
                         </tr>
 
-                        <!-- 7. Temps libre & Dîner -->
                         <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-7', 'icon-sam-7')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -394,7 +387,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">19h15 / 21h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('bourg_soir', event)" data-task="bourg_soir" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('bourg_soir', event)" data-task="bourg_soir" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Temps libre & Dîner</span>
@@ -421,7 +414,6 @@
                             </td>
                         </tr>
 
-                        <!-- 8. Les Noces de Feu -->
                         <tr class="itinerary-row block md:table-row bg-orange-50 md:bg-orange-50/30 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-900/50 md:border-none rounded-xl md:rounded-none mb-8 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-8', 'icon-sam-8')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-orange-100 dark:border-orange-900/50 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -431,7 +423,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">21h45 / 22h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('noces', event)" data-task="noces" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-orange-300 dark:border-orange-700 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('noces', event)" data-task="noces" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-orange-300 dark:border-orange-700 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-orange-900 dark:text-orange-400 text-xl md:text-lg theme-font task-title transition-colors">Les Noces de Feu</span>
@@ -468,7 +460,6 @@
                         </tr>
 
                         <!-- DIMANCHE -->
-                        <!-- 1. Le Premier Royaume -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-1', 'icon-dim-1')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -478,7 +469,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h30 / 10h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('royaume', event)" data-task="royaume" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('royaume', event)" data-task="royaume" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Le Premier Royaume</span>
@@ -509,7 +500,6 @@
                             </td>
                         </tr>
 
-                        <!-- 2. Les Amoureux de Verdun -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-2', 'icon-dim-2')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -519,7 +509,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">10h30 / 11h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('verdun', event)" data-task="verdun" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('verdun', event)" data-task="verdun" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Les Amoureux de Verdun</span>
@@ -550,7 +540,6 @@
                             </td>
                         </tr>
 
-                        <!-- 3. La Renaissance du Château -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-3', 'icon-dim-3')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -560,7 +549,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h30 / 12h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('renaissance', event)" data-task="renaissance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('renaissance', event)" data-task="renaissance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">La Renaissance du Château</span>
@@ -591,7 +580,6 @@
                             </td>
                         </tr>
 
-                        <!-- 4. Déjeuner Nomade -->
                         <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-4', 'icon-dim-4')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -601,7 +589,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h30 / 13h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('gare', event)" data-task="gare" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('gare', event)" data-task="gare" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Déjeuner : Roulotte de la Gare</span>
@@ -632,7 +620,6 @@
                             </td>
                         </tr>
 
-                        <!-- 5. Artisans -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-5', 'icon-dim-5')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -642,7 +629,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">13h45 / 15h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('artisans', event)" data-task="artisans" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('artisans', event)" data-task="artisans" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Village XVIIIème & Artisans</span>
@@ -673,7 +660,6 @@
                             </td>
                         </tr>
 
-                        <!-- 6. Nature -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-6', 'icon-dim-6')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -683,7 +669,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">15h45 / 17h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('daims', event)" data-task="daims" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('daims', event)" data-task="daims" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Clairière aux Daims & Nature</span>
@@ -736,6 +722,7 @@
 
     </div>
 
+    <!-- Script Principal (UI locale autonome) -->
     <script>
         // --- Bascule du Mode Nocturne (Dark Mode) ---
         function toggleDarkMode() {
@@ -747,6 +734,7 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
+        window.toggleDarkMode = toggleDarkMode;
 
         // --- Notifications Toast (Alternative à alert()) ---
         function showToast(message) {
@@ -757,18 +745,16 @@
                 toast.classList.add('opacity-0', 'pointer-events-none');
             }, 4000);
         }
+        window.showToast = showToast;
 
         // --- Partage de position GPS (SOS) ---
         function shareLocation() {
             const btn = document.getElementById('sos-btn');
             const originalHtml = btn.innerHTML;
-            
             if (!navigator.geolocation) {
                 showToast("Votre navigateur ne supporte pas la géolocalisation.");
                 return;
             }
-
-            // État de chargement
             btn.innerHTML = `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span class="font-bold text-sm hidden sm:inline">Recherche...</span>`;
 
             navigator.geolocation.getCurrentPosition(
@@ -777,62 +763,49 @@
                     const lon = position.coords.longitude;
                     const mapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
                     const shareText = "📍 Je suis ici au Puy du Fou ! Rejoins-moi :";
+                    btn.innerHTML = originalHtml; 
 
-                    btn.innerHTML = originalHtml; // Réinitialise le bouton
-
-                    // Utilisation de l'API de partage native si dispo (mobile)
                     if (navigator.share) {
-                        navigator.share({
-                            title: 'Ma position au Puy du Fou',
-                            text: shareText,
-                            url: mapUrl
-                        }).catch((error) => {
-                            console.log('Partage annulé ou échoué', error);
-                        });
+                        navigator.share({ title: 'Ma position au Puy du Fou', text: shareText, url: mapUrl })
+                        .catch((error) => console.log('Partage annulé ou échoué', error));
                     } else {
-                        // Fallback pour les ordinateurs ou navigateurs non compatibles (copie dans le presse-papier)
                         navigator.clipboard.writeText(`${shareText} ${mapUrl}`).then(() => {
                             showToast("Lien Google Maps copié dans le presse-papier !");
-                        }).catch(() => {
-                            showToast("Impossible de partager. Voici vos coordonnées : " + lat + ", " + lon);
-                        });
+                        }).catch(() => showToast("Impossible de partager. Voici vos coordonnées : " + lat + ", " + lon));
                     }
                 },
                 (error) => {
                     btn.innerHTML = originalHtml;
                     let errorMsg = "Erreur de géolocalisation.";
                     if (error.code === 1) errorMsg = "Veuillez autoriser l'accès à votre position GPS.";
-                    if (error.code === 3) errorMsg = "Le délai d'attente pour la position a expiré.";
+                    if (error.code === 3) errorMsg = "Le délai d'attente a expiré.";
                     showToast(errorMsg);
                 },
                 { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
             );
         }
+        window.shareLocation = shareLocation;
 
-        // --- Fonctionnalité pour l'Accordéon (détails des spectacles) ---
+        // --- Gestion de l'UI des Spectacles ---
         function toggleDetails(detailsId, iconId) {
             const detailsRow = document.getElementById(detailsId);
             const icon = document.getElementById(iconId);
-            
             if (detailsRow.classList.contains('hidden')) {
-                // Afficher
                 detailsRow.classList.remove('hidden');
                 icon.style.transform = 'rotate(180deg)';
                 detailsRow.classList.add('is-expanded'); 
-                detailsRow.style.display = ''; // CORRECTION : Force l'affichage si un filtre l'avait bloqué
+                detailsRow.style.display = '';
             } else {
-                // Cacher
                 detailsRow.classList.add('hidden');
                 icon.style.transform = 'rotate(0deg)';
                 detailsRow.classList.remove('is-expanded');
             }
         }
+        window.toggleDetails = toggleDetails;
 
-        // --- Logique du Carnet de Bord (Checklist / Progression) ---
         function toggleTask(taskId, event) {
-            event.stopPropagation(); // Empêche l'ouverture de l'accordéon au clic sur la case
+            event.stopPropagation(); 
             
-            // Récupération ou initialisation des données locales
             let tasks = JSON.parse(localStorage.getItem('puydufou-tasks') || '{}');
             tasks[taskId] = !tasks[taskId];
             localStorage.setItem('puydufou-tasks', JSON.stringify(tasks));
@@ -840,24 +813,22 @@
             updateTaskUI(taskId, tasks[taskId]);
             updateProgressBar();
         }
+        window.toggleTask = toggleTask;
 
         function updateTaskUI(taskId, isCompleted) {
             const btn = document.querySelector(`button[data-task="${taskId}"]`);
             if(!btn) return;
-            
             const svg = btn.querySelector('svg');
             const row = btn.closest('.itinerary-row');
             const title = row.querySelector('.task-title');
             
             if (isCompleted) {
-                // Style quand la tâche est accomplie
                 btn.classList.add('bg-emerald-500', 'border-emerald-500', 'dark:bg-emerald-500', 'dark:border-emerald-500');
                 btn.classList.remove('border-stone-300', 'dark:border-stone-500');
                 svg.classList.remove('opacity-0');
                 row.classList.add('opacity-50', 'bg-stone-50', 'dark:bg-stone-800/50');
                 if(title) title.classList.add('line-through', 'text-stone-500', 'dark:text-stone-500');
             } else {
-                // Style par défaut
                 btn.classList.remove('bg-emerald-500', 'border-emerald-500', 'dark:bg-emerald-500', 'dark:border-emerald-500');
                 btn.classList.add('border-stone-300', 'dark:border-stone-500');
                 svg.classList.add('opacity-0');
@@ -865,24 +836,21 @@
                 if(title) title.classList.remove('line-through', 'text-stone-500', 'dark:text-stone-500');
             }
         }
+        window.updateTaskUI = updateTaskUI;
 
         function updateProgressBar() {
             const taskBtns = document.querySelectorAll('.task-checkbox');
             const total = taskBtns.length;
-            let tasks = JSON.parse(localStorage.getItem('puydufou-tasks') || '{}');
             let completed = 0;
-            
             taskBtns.forEach(btn => {
-                if(tasks[btn.dataset.task]) completed++;
+                if(btn.classList.contains('bg-emerald-500')) completed++;
             });
-            
             const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
-            
             document.getElementById('progress-bar').style.width = percentage + '%';
             document.getElementById('progress-text').innerText = percentage + '%';
         }
+        window.updateProgressBar = updateProgressBar;
 
-        // Fonctionnalité de filtrage par jour
         function filterDay(day) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('bg-red-950', 'text-white', 'shadow-md', 'dark:bg-red-900', 'dark:text-white');
@@ -897,29 +865,19 @@
             const sep = document.getElementById('row-separator');
 
             mainRows.forEach(row => {
-                if (day === 'all' || row.getAttribute('data-day') === day) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                if (day === 'all' || row.getAttribute('data-day') === day) row.style.display = '';
+                else row.style.display = 'none';
             });
-
             detailRows.forEach(row => {
-                if ((day === 'all' || row.getAttribute('data-day') === day) && row.classList.contains('is-expanded')) {
-                    row.style.display = ''; 
-                } else {
-                    row.style.display = 'none';
-                }
+                if ((day === 'all' || row.getAttribute('data-day') === day) && row.classList.contains('is-expanded')) row.style.display = ''; 
+                else row.style.display = 'none';
             });
-
-            if (sep) {
-                sep.style.display = day === 'all' ? '' : 'none';
-            }
+            if (sep) sep.style.display = day === 'all' ? '' : 'none';
         }
+        window.filterDay = filterDay;
 
         // --- Logique de la Carte Interactive (Leaflet) ---
         const map = L.map('park-map', {scrollWheelZoom: false}).setView([46.8895, -0.9300], 15);
-        
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -952,7 +910,6 @@
         };
 
         const mapMarkers = {};
-
         for (const [id, data] of Object.entries(markersData)) {
             mapMarkers[id] = L.marker(data.coords, {icon: createPin(data.color)})
                 .addTo(map)
@@ -967,10 +924,90 @@
                 setTimeout(() => marker.openPopup(), 400); 
             }
         }
+        window.focusOnMap = focusOnMap;
+
+        // --- Surligneur Temporel (Traqueur "En Cours") ---
+        function highlightCurrentEvent() {
+            const now = new Date();
+            const dayOfWeek = now.getDay(); // 0 = Dimanche, 6 = Samedi
+            
+            // Sécurité : On arrête la fonction si nous ne sommes ni Samedi ni Dimanche (Semaine)
+            if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                return; 
+            }
+
+            const currentDayStr = dayOfWeek === 6 ? 'sam' : 'dim';
+            // Conversion de l'heure actuelle en minutes pour faciliter les calculs
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+            // Définition des blocs horaires continus pour chaque spectacle (en minutes)
+            const timeSlots = {
+                'sam': [
+                    { task: 'panache', start: 9*60, end: 10*60+45 },
+                    { task: 'triomphe', start: 10*60+45, end: 12*60+30 },
+                    { task: 'ecuyer', start: 12*60+30, end: 14*60+10 },
+                    { task: 'vikings', start: 14*60+10, end: 15*60+30 },
+                    { task: 'oiseaux', start: 15*60+30, end: 17*60+20 },
+                    { task: 'lance', start: 17*60+20, end: 19*60+0 },
+                    { task: 'bourg_soir', start: 19*60+0, end: 21*60+15 },
+                    { task: 'noces', start: 21*60+15, end: 23*60+30 }
+                ],
+                'dim': [
+                    { task: 'royaume', start: 9*60, end: 10*60+20 },
+                    { task: 'verdun', start: 10*60+20, end: 11*60+20 },
+                    { task: 'renaissance', start: 11*60+20, end: 12*60+20 },
+                    { task: 'gare', start: 12*60+20, end: 13*60+40 },
+                    { task: 'artisans', start: 13*60+40, end: 15*60+40 },
+                    { task: 'daims', start: 15*60+40, end: 18*60+0 }
+                ]
+            };
+
+            // 1. Nettoyer les anciens surlignages
+            document.querySelectorAll('.itinerary-row').forEach(row => {
+                row.classList.remove('ring-4', 'ring-amber-400', 'dark:ring-amber-500', 'shadow-xl', 'transform', 'scale-[1.02]', 'z-10', 'relative', 'bg-amber-50', 'dark:bg-amber-900/20');
+                const badge = row.querySelector('.current-badge');
+                if(badge) badge.remove();
+            });
+
+            // 2. Trouver le créneau actuel
+            const slotsToday = timeSlots[currentDayStr];
+            if(!slotsToday) return;
+
+            const currentSlot = slotsToday.find(slot => currentMinutes >= slot.start && currentMinutes < slot.end);
+
+            if (currentSlot) {
+                const btn = document.querySelector(`button[data-task="${currentSlot.task}"]`);
+                if (btn) {
+                    const row = btn.closest('.itinerary-row');
+                    
+                    // Appliquer l'effet visuel de surbrillance
+                    row.classList.add('ring-4', 'ring-amber-400', 'dark:ring-amber-500', 'shadow-xl', 'transform', 'scale-[1.02]', 'z-10', 'relative', 'bg-amber-50', 'dark:bg-amber-900/20');
+                    
+                    // Créer le petit badge clignotant
+                    const titleElement = row.querySelector('.task-title');
+                    if (titleElement && !row.querySelector('.current-badge')) {
+                        const badge = document.createElement('span');
+                        badge.className = 'current-badge bg-amber-400 text-amber-950 text-[10px] uppercase tracking-wider px-2 py-1 rounded-full font-bold ml-3 inline-flex items-center gap-1.5 shadow-sm align-middle';
+                        badge.innerHTML = '<span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-900 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-amber-900"></span></span> En ce moment';
+                        titleElement.after(badge);
+                    }
+
+                    // Scroll et filtre automatique au 1er lancement de l'application
+                    if (!window.hasAutoScrolledToCurrent) {
+                        setTimeout(() => {
+                            filterDay(currentDayStr);
+                            row.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        }, 500);
+                        window.hasAutoScrolledToCurrent = true;
+                    }
+                }
+            }
+        }
+        window.highlightCurrentEvent = highlightCurrentEvent;
 
         // --- Initialisation Finale au chargement de la page ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Charge la progression sauvegardée (checkmarks)
+            // Charge la progression sauvegardée localement (checkmarks)
             let tasks = JSON.parse(localStorage.getItem('puydufou-tasks') || '{}');
             document.querySelectorAll('.task-checkbox').forEach(btn => {
                 const taskId = btn.dataset.task;
@@ -979,6 +1016,10 @@
                 }
             });
             updateProgressBar();
+
+            // Lancement du traqueur temporel
+            highlightCurrentEvent();
+            setInterval(highlightCurrentEvent, 60000); // Actualisation chaque minute
         });
     </script>
 </body>
