@@ -692,8 +692,8 @@
         }
 
         // --- Logique de la Carte Interactive (Leaflet) ---
-        // 1. Initialisation de la carte centrée sur le parc
-        const map = L.map('park-map', {scrollWheelZoom: false}).setView([46.893, -0.929], 15);
+        // 1. Initialisation de la carte centrée sur le vrai milieu du parc
+        const map = L.map('park-map', {scrollWheelZoom: false}).setView([46.8895, -0.9300], 15);
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -710,22 +710,22 @@
             });
         };
 
-        // 3. Données en dur de l'itinéraire (Coordonnées GPS)
+        // 3. Données en dur de l'itinéraire (Coordonnées GPS réelles et corrigées)
         const markersData = {
-            'panache': { title: 'Le Dernier Panache', coords: [46.8914, -0.9333], color: '#ea580c' },
-            'triomphe': { title: 'Le Signe du Triomphe', coords: [46.8942, -0.9255], color: '#ea580c' },
-            'ecuyer': { title: 'L\'Écuyer Tranchant', coords: [46.8938, -0.9248], color: '#78716c' },
-            'vikings': { title: 'Les Vikings', coords: [46.8940, -0.9275], color: '#ea580c' },
-            'oiseaux': { title: 'Bal des Oiseaux Fantômes', coords: [46.8965, -0.9295], color: '#ea580c' },
-            'lance': { title: 'Le Secret de la Lance', coords: [46.8948, -0.9320], color: '#ea580c' },
-            'bourg_soir': { title: 'Temps libre & Dîner', coords: [46.8918, -0.9320], color: '#78716c' },
-            'noces': { title: 'Les Noces de Feu', coords: [46.8920, -0.9300], color: '#9a3412' },
-            'royaume': { title: 'Le Premier Royaume', coords: [46.8895, -0.9325], color: '#059669' },
-            'verdun': { title: 'Les Amoureux de Verdun', coords: [46.8930, -0.9340], color: '#059669' },
-            'renaissance': { title: 'La Renaissance du Château', coords: [46.8955, -0.9315], color: '#059669' },
-            'gare': { title: 'Roulotte de la Gare', coords: [46.8910, -0.9325], color: '#78716c' },
-            'artisans': { title: 'Village XVIIIème & Artisans', coords: [46.8905, -0.9285], color: '#059669' },
-            'daims': { title: 'Clairière aux Daims & Nature', coords: [46.8970, -0.9240], color: '#059669' }
+            'panache': { title: 'Le Dernier Panache', coords: [46.89007, -0.933977], color: '#ea580c' },
+            'triomphe': { title: 'Le Signe du Triomphe', coords: [46.884938, -0.92783], color: '#ea580c' },
+            'ecuyer': { title: 'L\'Écuyer Tranchant (Citadelle)', coords: [46.8845, -0.9230], color: '#78716c' },
+            'vikings': { title: 'Les Vikings', coords: [46.886485, -0.929568], color: '#ea580c' },
+            'oiseaux': { title: 'Bal des Oiseaux Fantômes', coords: [46.888185, -0.92722], color: '#ea580c' },
+            'lance': { title: 'Le Secret de la Lance', coords: [46.891271, -0.931176], color: '#ea580c' },
+            'bourg_soir': { title: 'Bourg 1900 (Temps libre)', coords: [46.890500, -0.934000], color: '#78716c' },
+            'noces': { title: 'Les Noces de Feu (Le Lac)', coords: [46.889797, -0.929211], color: '#9a3412' },
+            'royaume': { title: 'Le Premier Royaume', coords: [46.888606, -0.930589], color: '#059669' },
+            'verdun': { title: 'Les Amoureux de Verdun', coords: [46.888665, -0.931378], color: '#059669' },
+            'renaissance': { title: 'La Renaissance du Château', coords: [46.892119, -0.929992], color: '#059669' },
+            'gare': { title: 'La Roulotte de la Gare', coords: [46.890800, -0.934500], color: '#78716c' },
+            'artisans': { title: 'Village XVIIIème & Artisans', coords: [46.887500, -0.929000], color: '#059669' },
+            'daims': { title: 'Clairière aux Daims & Nature', coords: [46.885500, -0.926000], color: '#059669' }
         };
 
         const mapMarkers = {};
