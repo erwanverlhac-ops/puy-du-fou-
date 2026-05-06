@@ -729,14 +729,15 @@
                     <h2 class="text-xl font-bold text-red-950 dark:text-red-400 theme-font transition-colors">Carte des Attractions</h2>
                 </div>
                 
-                <!-- Radar de Survie (Toilettes / Eau) -->
-                <div class="flex gap-2">
+                <!-- Radar de Survie (Toilettes / Eau / Voiture) -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="saveCarLocation()" class="text-xs bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 border border-stone-300 dark:border-stone-600 px-3 py-1.5 rounded-full flex items-center gap-1 font-medium transition-colors" title="Mémoriser l'emplacement de ma voiture">🚗 Ma Voiture</button>
                     <button onclick="toggleMapPOI('toilets')" class="text-xs bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 border border-stone-300 dark:border-stone-600 px-3 py-1.5 rounded-full flex items-center gap-1 font-medium transition-colors">🚻 Toilettes</button>
                     <button onclick="toggleMapPOI('water')" class="text-xs bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 border border-stone-300 dark:border-stone-600 px-3 py-1.5 rounded-full flex items-center gap-1 font-medium transition-colors">🚰 Points d'eau</button>
                 </div>
             </div>
             <div id="park-map" class="w-full h-[400px] rounded-xl border border-stone-300 dark:border-stone-600 z-0 relative"></div>
-            <p class="text-xs text-stone-500 dark:text-stone-400 mt-3 text-center italic transition-colors">Astuce : Utilisez les filtres Toilettes et Eau pour localiser les commodités essentielles en cas de forte chaleur.</p>
+            <p class="text-xs text-stone-500 dark:text-stone-400 mt-3 text-center italic transition-colors">Astuce : En arrivant sur le parking, cliquez sur "🚗 Ma Voiture" pour sauvegarder sa position pour ce soir.</p>
         </div>
 
         <!-- Section Info / Sources -->
@@ -887,6 +888,7 @@
 
             const mainRows = document.querySelectorAll('.itinerary-row');
             const detailRows = document.querySelectorAll('.details-row');
+            const walkRows = document.querySelectorAll('.walking-time-row'); // Nouveau : Gère l'affichage des temps de marche
             const sep = document.getElementById('row-separator');
 
             mainRows.forEach(row => {
@@ -895,6 +897,10 @@
             });
             detailRows.forEach(row => {
                 if ((day === 'all' || row.getAttribute('data-day') === day) && row.classList.contains('is-expanded')) row.style.display = ''; 
+                else row.style.display = 'none';
+            });
+            walkRows.forEach(row => {
+                if (day === 'all' || row.getAttribute('data-day') === day) row.style.display = '';
                 else row.style.display = 'none';
             });
             if (sep) sep.style.display = day === 'all' ? '' : 'none';
@@ -951,9 +957,10 @@
         }
         window.focusOnMap = focusOnMap;
 
-        // --- Radar de Survie (POI Toilettes / Eau) ---
+        // --- Radar de Survie & Sauvegarde Parking ---
         const poiMarkers = { toilets: [], water: [] };
         let poiVisible = { toilets: false, water: false };
+        let carMarker = null;
 
         const poiData = {
             toilets: [
@@ -971,8 +978,9 @@
 
         const toiletIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚻', iconSize: [28,28], iconAnchor: [14, 14]});
         const waterIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚰', iconSize: [28,28], iconAnchor: [14, 14]});
+        const carIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚗', iconSize: [28,28], iconAnchor: [14, 14]});
 
-        // Préparation des marqueurs
+        // Préparation des marqueurs Toilettes/Eau
         poiData.toilets.forEach(poi => {
             poiMarkers.toilets.push(L.marker(poi.coords, {icon: toiletIcon}).bindPopup(`<strong>${poi.name}</strong>`));
         });
@@ -986,9 +994,88 @@
                 if (poiVisible[type]) marker.addTo(map);
                 else marker.remove();
             });
-            // Focus global pour voir les points
             if (poiVisible[type]) map.setView([46.8895, -0.9300], 15);
         };
+
+        // GPS Parking
+        window.saveCarLocation = function() {
+            if (!navigator.geolocation) {
+                window.showToast("Géolocalisation non supportée.");
+                return;
+            }
+            window.showToast("Recherche de votre véhicule...");
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const coords = [position.coords.latitude, position.coords.longitude];
+                    localStorage.setItem('puydufou-car', JSON.stringify(coords));
+                    
+                    if (carMarker) {
+                        carMarker.setLatLng(coords);
+                    } else {
+                        carMarker = L.marker(coords, {icon: carIcon}).addTo(map).bindPopup(`<strong>🚗 Ma Voiture</strong>`);
+                    }
+                    
+                    document.getElementById('map-container').scrollIntoView({ behavior: 'smooth' });
+                    map.setView(coords, 17);
+                    setTimeout(() => carMarker.openPopup(), 400); 
+                    window.showToast("Position de la voiture mémorisée !");
+                },
+                (error) => {
+                    window.showToast("Erreur de géolocalisation. Activez votre GPS.");
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+
+        // --- Algorithme de Calcul Inter-Étapes (Haversine Formula) ---
+        function getDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Rayon de la Terre en km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return (R * c) * 1000; // Distance en mètres
+        }
+
+        function injectWalkingTimes() {
+            ['sam', 'dim'].forEach(day => {
+                const rows = Array.from(document.querySelectorAll(`.itinerary-row[data-day="${day}"]`));
+                for (let i = 0; i < rows.length - 1; i++) {
+                    const currentBtn = rows[i].querySelector('button[data-task]');
+                    const nextBtn = rows[i+1].querySelector('button[data-task]');
+                    if (!currentBtn || !nextBtn) continue;
+
+                    const coords1 = markersData[currentBtn.dataset.task].coords;
+                    const coords2 = markersData[nextBtn.dataset.task].coords;
+                    
+                    // Calcul de la distance et du temps (Vitesse estimée : 75m par minute, soit ~4.5 km/h)
+                    const dist = getDistance(coords1[0], coords1[1], coords2[0], coords2[1]);
+                    let mins = Math.ceil(dist / 75); 
+                    if (mins < 1) mins = 1;
+
+                    // Création de l'étiquette de temps de trajet
+                    const tr = document.createElement('tr');
+                    tr.className = `walking-time-row block md:table-row bg-transparent pointer-events-none`;
+                    tr.setAttribute('data-day', day);
+                    tr.innerHTML = `
+                        <td colspan="5" class="py-2 text-center border-none">
+                            <div class="inline-flex items-center gap-1.5 text-[11px] font-medium text-stone-500 dark:text-stone-400 bg-stone-200/50 dark:bg-stone-700/50 border border-stone-200 dark:border-stone-600 px-3 py-1 rounded-full shadow-sm">
+                                <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                                Trajet direct : ~${mins} min de marche (${Math.round(dist)}m)
+                            </div>
+                        </td>
+                    `;
+                    
+                    // Insertion juste après la ligne de "Détails" (A propos du spectacle)
+                    const detailsRow = rows[i].nextElementSibling;
+                    if (detailsRow && detailsRow.classList.contains('details-row')) {
+                        detailsRow.after(tr);
+                    }
+                }
+            });
+        }
 
         // --- Surligneur Temporel (Traqueur "En Cours") & Smart Chrono ---
         function highlightCurrentEvent() {
@@ -996,17 +1083,14 @@
             const dayOfWeek = now.getDay(); // 0 = Dimanche, 6 = Samedi
             const chrono = document.getElementById('smart-chrono');
             
-            // Sécurité : On arrête la fonction si nous ne sommes ni Samedi ni Dimanche (Semaine)
             if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-                chrono.classList.add('-translate-y-full'); // Cache le chrono la semaine
+                chrono.classList.add('-translate-y-full'); 
                 return; 
             }
 
             const currentDayStr = dayOfWeek === 6 ? 'sam' : 'dim';
-            // Conversion de l'heure actuelle en minutes pour faciliter les calculs
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-            // Définition des blocs horaires continus pour chaque spectacle (en minutes)
             const timeSlots = {
                 'sam': [
                     { task: 'panache', start: 9*60, end: 10*60+45 },
@@ -1031,7 +1115,7 @@
             const slotsToday = timeSlots[currentDayStr];
             if(!slotsToday) return;
 
-            // Logique 1 : Surlignage de l'événement ACTUEL
+            // Surlignage de l'événement ACTUEL
             document.querySelectorAll('.itinerary-row').forEach(row => {
                 row.classList.remove('ring-4', 'ring-amber-400', 'dark:ring-amber-500', 'shadow-xl', 'transform', 'scale-[1.02]', 'z-10', 'relative', 'bg-amber-50', 'dark:bg-amber-900/20');
                 const badge = row.querySelector('.current-badge');
@@ -1064,10 +1148,9 @@
                 }
             }
 
-            // Logique 2 : Le Smart Chrono pour l'événement SUIVANT
+            // Smart Chrono pour l'événement SUIVANT
             const chronoTitle = document.getElementById('chrono-title');
             const chronoTime = document.getElementById('chrono-time');
-            
             const nextSlot = slotsToday.find(slot => slot.start > currentMinutes);
             
             if (nextSlot) {
@@ -1085,9 +1168,9 @@
                     chronoTime.classList.remove('text-yellow-300');
                     chronoTime.classList.add('text-white');
                 }
-                chrono.classList.remove('-translate-y-full'); // Fait descendre le bandeau
+                chrono.classList.remove('-translate-y-full'); 
             } else {
-                chrono.classList.add('-translate-y-full'); // Plus d'activité après, on le cache
+                chrono.classList.add('-translate-y-full'); 
             }
         }
         window.highlightCurrentEvent = highlightCurrentEvent;
@@ -1143,6 +1226,13 @@
         // --- Initialisation Finale au chargement de la page ---
         document.addEventListener('DOMContentLoaded', () => {
             injectRatings();
+            injectWalkingTimes(); // Injection des temps de trajet calculés par GPS
+
+            // Restaure la voiture si mémorisée
+            const savedCar = localStorage.getItem('puydufou-car');
+            if(savedCar) {
+                carMarker = L.marker(JSON.parse(savedCar), {icon: carIcon}).addTo(map).bindPopup(`<strong>🚗 Ma Voiture</strong>`);
+            }
 
             let tasks = JSON.parse(localStorage.getItem('puydufou-tasks') || '{}');
             document.querySelectorAll('.task-checkbox').forEach(btn => {
