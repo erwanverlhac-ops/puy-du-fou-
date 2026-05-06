@@ -67,8 +67,25 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
-<body class="bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-200 min-h-screen py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+<body class="bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-200 min-h-screen pb-24 sm:pb-8 transition-colors duration-300 relative">
     
+    <!-- Assistant Smart Chrono (Fixé en haut, caché par défaut) -->
+    <div id="smart-chrono" class="sticky top-0 z-[100] bg-emerald-600 dark:bg-emerald-800 text-white shadow-lg transition-transform duration-500 transform -translate-y-full flex justify-between items-center px-4 py-3 border-b border-emerald-700 dark:border-emerald-900">
+        <div class="flex items-center gap-3">
+            <div class="bg-white/20 p-2 rounded-full animate-pulse">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-wider font-semibold opacity-80 block leading-none mb-1">Prochaine Étape</span>
+                <span id="chrono-title" class="font-bold text-sm sm:text-base leading-none theme-font tracking-wide">...</span>
+            </div>
+        </div>
+        <div class="text-right">
+            <span class="text-xs uppercase tracking-wider font-semibold opacity-80 block leading-none mb-1">Dans</span>
+            <span id="chrono-time" class="font-bold text-lg leading-none text-yellow-300">-- min</span>
+        </div>
+    </div>
+
     <!-- Notifications Toast (invisibles par défaut) -->
     <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-800 px-6 py-3 rounded-xl shadow-2xl z-[10000] opacity-0 pointer-events-none transition-opacity duration-300 font-medium text-sm text-center w-max max-w-[90vw]">
         Message de notification
@@ -81,36 +98,36 @@
     </button>
 
     <!-- Bouton bascule Dark Mode -->
-    <button onclick="toggleDarkMode()" class="fixed top-4 right-4 md:top-8 md:right-8 bg-white dark:bg-stone-800 text-stone-800 dark:text-yellow-400 p-3 rounded-full shadow-lg border border-stone-200 dark:border-stone-700 z-[9999] hover:scale-110 transition-transform" title="Basculer le thème">
+    <button onclick="toggleDarkMode()" class="fixed top-16 right-4 md:top-20 md:right-8 bg-white dark:bg-stone-800 text-stone-800 dark:text-yellow-400 p-3 rounded-full shadow-lg border border-stone-200 dark:border-stone-700 z-[9999] hover:scale-110 transition-transform" title="Basculer le thème">
         <!-- Icône Lune (affichée en mode clair) -->
         <svg id="moon-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         <!-- Icône Soleil (affichée en mode sombre) -->
         <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
     </button>
 
-    <div class="max-w-6xl mx-auto space-y-8 mt-6 md:mt-0 pb-16">
+    <div class="max-w-6xl mx-auto space-y-8 mt-6 px-4 sm:px-6 lg:px-8">
         
         <!-- En-tête -->
-        <header class="text-center space-y-4">
+        <header class="text-center space-y-4 pt-4">
             <div class="inline-block bg-red-900 dark:bg-red-800 text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase mb-2 shadow-sm">
                 Planification Logistique
             </div>
             <h1 class="text-4xl md:text-5xl font-bold text-red-950 dark:text-red-400 theme-font transition-colors">Itinéraire Puy du Fou</h1>
             <p class="text-lg text-stone-600 dark:text-stone-400 max-w-2xl mx-auto transition-colors">
-                Programme optimisé pour 4 adultes sur un week-end (sans Pass Émotion). Cet itinéraire minimise vos déplacements et respecte le délai de 45 minutes avant chaque représentation.
+                Programme optimisé pour 4 adultes sur un week-end. L'application calcule automatiquement vos temps de trajet et affiche les indispensables vitaux.
             </p>
         </header>
 
         <!-- Barre de Progression (Carnet de Bord) -->
-        <div class="bg-white dark:bg-stone-800 rounded-2xl shadow-md border border-stone-200 dark:border-stone-700 p-4 sm:p-5 transition-colors">
-            <div class="flex justify-between items-end mb-2">
+        <div class="bg-white dark:bg-stone-800 rounded-2xl shadow-md border border-stone-200 dark:border-stone-700 p-4 sm:p-5 transition-colors relative overflow-hidden">
+            <div class="flex justify-between items-end mb-2 relative z-10">
                 <div>
                     <h3 class="font-bold text-stone-800 dark:text-stone-200 text-lg md:text-xl">Carnet de bord</h3>
                     <p class="text-xs md:text-sm text-stone-500 dark:text-stone-400">Cliquez sur les cercles pour valider vos étapes</p>
                 </div>
                 <span id="progress-text" class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">0%</span>
             </div>
-            <div class="w-full bg-stone-100 dark:bg-stone-700 rounded-full h-3 border border-stone-200 dark:border-stone-600 overflow-hidden">
+            <div class="w-full bg-stone-100 dark:bg-stone-700 rounded-full h-3 border border-stone-200 dark:border-stone-600 overflow-hidden relative z-10">
                 <div id="progress-bar" class="bg-gradient-to-r from-emerald-400 to-emerald-600 h-full rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
             </div>
         </div>
@@ -147,7 +164,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h15 / 10h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('panache', event)" data-task="panache" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('panache', event)" data-task="panache" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Dernier Panache</span>
@@ -187,7 +204,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h00 / 11h45</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('triomphe', event)" data-task="triomphe" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('triomphe', event)" data-task="triomphe" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Signe du Triomphe</span>
@@ -227,7 +244,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h30 / 14h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('ecuyer', event)" data-task="ecuyer" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('ecuyer', event)" data-task="ecuyer" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Déjeuner : L'Écuyer Tranchant</span>
@@ -267,7 +284,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">14h15 / 15h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('vikings', event)" data-task="vikings" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('vikings', event)" data-task="vikings" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Les Vikings</span>
@@ -307,7 +324,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">16h00 / 16h45</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('oiseaux', event)" data-task="oiseaux" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('oiseaux', event)" data-task="oiseaux" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Bal des Oiseaux Fantômes</span>
@@ -347,7 +364,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">17h45 / 18h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('lance', event)" data-task="lance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('lance', event)" data-task="lance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Secret de la Lance</span>
@@ -387,7 +404,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">19h15 / 21h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('bourg_soir', event)" data-task="bourg_soir" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('bourg_soir', event)" data-task="bourg_soir" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Temps libre & Dîner</span>
@@ -423,7 +440,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">21h45 / 22h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('noces', event)" data-task="noces" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-orange-300 dark:border-orange-700 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('noces', event)" data-task="noces" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-orange-300 dark:border-orange-700 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-orange-900 dark:text-orange-400 text-xl md:text-lg theme-font task-title transition-colors">Les Noces de Feu</span>
@@ -469,7 +486,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h30 / 10h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('royaume', event)" data-task="royaume" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('royaume', event)" data-task="royaume" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Le Premier Royaume</span>
@@ -509,7 +526,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">10h30 / 11h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('verdun', event)" data-task="verdun" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('verdun', event)" data-task="verdun" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Les Amoureux de Verdun</span>
@@ -549,7 +566,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h30 / 12h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('renaissance', event)" data-task="renaissance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('renaissance', event)" data-task="renaissance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">La Renaissance du Château</span>
@@ -589,7 +606,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h30 / 13h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('gare', event)" data-task="gare" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('gare', event)" data-task="gare" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Déjeuner : Roulotte de la Gare</span>
@@ -629,7 +646,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">13h45 / 15h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('artisans', event)" data-task="artisans" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('artisans', event)" data-task="artisans" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Village XVIIIème & Artisans</span>
@@ -669,7 +686,7 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">15h45 / 17h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('daims', event)" data-task="daims" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait pour le groupe">
+                                <button onclick="toggleTask('daims', event)" data-task="daims" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Clairière aux Daims & Nature</span>
@@ -706,12 +723,20 @@
 
         <!-- Carte Interactive en dur -->
         <div id="map-container" class="bg-white dark:bg-stone-800 rounded-2xl shadow-xl border border-stone-200 dark:border-stone-700 p-4 md:p-6 scroll-mt-6 transition-colors">
-            <div class="flex items-center gap-2 mb-4">
-                <span class="text-2xl">📍</span>
-                <h2 class="text-xl font-bold text-red-950 dark:text-red-400 theme-font transition-colors">Carte des Attractions</h2>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📍</span>
+                    <h2 class="text-xl font-bold text-red-950 dark:text-red-400 theme-font transition-colors">Carte des Attractions</h2>
+                </div>
+                
+                <!-- Radar de Survie (Toilettes / Eau) -->
+                <div class="flex gap-2">
+                    <button onclick="toggleMapPOI('toilets')" class="text-xs bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 border border-stone-300 dark:border-stone-600 px-3 py-1.5 rounded-full flex items-center gap-1 font-medium transition-colors">🚻 Toilettes</button>
+                    <button onclick="toggleMapPOI('water')" class="text-xs bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 border border-stone-300 dark:border-stone-600 px-3 py-1.5 rounded-full flex items-center gap-1 font-medium transition-colors">🚰 Points d'eau</button>
+                </div>
             </div>
             <div id="park-map" class="w-full h-[400px] rounded-xl border border-stone-300 dark:border-stone-600 z-0 relative"></div>
-            <p class="text-xs text-stone-500 dark:text-stone-400 mt-3 text-center italic transition-colors">Les marqueurs et coordonnées sont intégrés "en dur" dans le code pour vous aider à visualiser la distance entre vos spectacles.</p>
+            <p class="text-xs text-stone-500 dark:text-stone-400 mt-3 text-center italic transition-colors">Astuce : Utilisez les filtres Toilettes et Eau pour localiser les commodités essentielles en cas de forte chaleur.</p>
         </div>
 
         <!-- Section Info / Sources -->
@@ -926,13 +951,54 @@
         }
         window.focusOnMap = focusOnMap;
 
-        // --- Surligneur Temporel (Traqueur "En Cours") ---
+        // --- Radar de Survie (POI Toilettes / Eau) ---
+        const poiMarkers = { toilets: [], water: [] };
+        let poiVisible = { toilets: false, water: false };
+
+        const poiData = {
+            toilets: [
+                { coords: [46.8899, -0.9330], name: 'Toilettes (Bourg)' },
+                { coords: [46.8855, -0.9270], name: 'Toilettes (Stadium)' },
+                { coords: [46.8910, -0.9310], name: 'Toilettes (Lance)' },
+                { coords: [46.8880, -0.9295], name: 'Toilettes (Forêt)' }
+            ],
+            water: [
+                { coords: [46.8895, -0.9325], name: 'Point d\'eau potable' },
+                { coords: [46.8860, -0.9280], name: 'Point d\'eau potable' },
+                { coords: [46.8920, -0.9300], name: 'Point d\'eau potable' }
+            ]
+        };
+
+        const toiletIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚻', iconSize: [28,28], iconAnchor: [14, 14]});
+        const waterIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚰', iconSize: [28,28], iconAnchor: [14, 14]});
+
+        // Préparation des marqueurs
+        poiData.toilets.forEach(poi => {
+            poiMarkers.toilets.push(L.marker(poi.coords, {icon: toiletIcon}).bindPopup(`<strong>${poi.name}</strong>`));
+        });
+        poiData.water.forEach(poi => {
+            poiMarkers.water.push(L.marker(poi.coords, {icon: waterIcon}).bindPopup(`<strong>${poi.name}</strong>`));
+        });
+
+        window.toggleMapPOI = function(type) {
+            poiVisible[type] = !poiVisible[type];
+            poiMarkers[type].forEach(marker => {
+                if (poiVisible[type]) marker.addTo(map);
+                else marker.remove();
+            });
+            // Focus global pour voir les points
+            if (poiVisible[type]) map.setView([46.8895, -0.9300], 15);
+        };
+
+        // --- Surligneur Temporel (Traqueur "En Cours") & Smart Chrono ---
         function highlightCurrentEvent() {
             const now = new Date();
             const dayOfWeek = now.getDay(); // 0 = Dimanche, 6 = Samedi
+            const chrono = document.getElementById('smart-chrono');
             
             // Sécurité : On arrête la fonction si nous ne sommes ni Samedi ni Dimanche (Semaine)
             if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                chrono.classList.add('-translate-y-full'); // Cache le chrono la semaine
                 return; 
             }
 
@@ -962,16 +1028,15 @@
                 ]
             };
 
-            // 1. Nettoyer les anciens surlignages
+            const slotsToday = timeSlots[currentDayStr];
+            if(!slotsToday) return;
+
+            // Logique 1 : Surlignage de l'événement ACTUEL
             document.querySelectorAll('.itinerary-row').forEach(row => {
                 row.classList.remove('ring-4', 'ring-amber-400', 'dark:ring-amber-500', 'shadow-xl', 'transform', 'scale-[1.02]', 'z-10', 'relative', 'bg-amber-50', 'dark:bg-amber-900/20');
                 const badge = row.querySelector('.current-badge');
                 if(badge) badge.remove();
             });
-
-            // 2. Trouver le créneau actuel
-            const slotsToday = timeSlots[currentDayStr];
-            if(!slotsToday) return;
 
             const currentSlot = slotsToday.find(slot => currentMinutes >= slot.start && currentMinutes < slot.end);
 
@@ -979,11 +1044,8 @@
                 const btn = document.querySelector(`button[data-task="${currentSlot.task}"]`);
                 if (btn) {
                     const row = btn.closest('.itinerary-row');
-                    
-                    // Appliquer l'effet visuel de surbrillance
                     row.classList.add('ring-4', 'ring-amber-400', 'dark:ring-amber-500', 'shadow-xl', 'transform', 'scale-[1.02]', 'z-10', 'relative', 'bg-amber-50', 'dark:bg-amber-900/20');
                     
-                    // Créer le petit badge clignotant
                     const titleElement = row.querySelector('.task-title');
                     if (titleElement && !row.querySelector('.current-badge')) {
                         const badge = document.createElement('span');
@@ -992,7 +1054,6 @@
                         titleElement.after(badge);
                     }
 
-                    // Scroll et filtre automatique au 1er lancement de l'application
                     if (!window.hasAutoScrolledToCurrent) {
                         setTimeout(() => {
                             filterDay(currentDayStr);
@@ -1002,12 +1063,37 @@
                     }
                 }
             }
+
+            // Logique 2 : Le Smart Chrono pour l'événement SUIVANT
+            const chronoTitle = document.getElementById('chrono-title');
+            const chronoTime = document.getElementById('chrono-time');
+            
+            const nextSlot = slotsToday.find(slot => slot.start > currentMinutes);
+            
+            if (nextSlot) {
+                chronoTitle.innerText = markersData[nextSlot.task].title;
+                const diff = nextSlot.start - currentMinutes;
+                
+                if (diff < 60) {
+                    chronoTime.innerText = diff + " min";
+                    chronoTime.classList.add('text-yellow-300');
+                    chronoTime.classList.remove('text-white');
+                } else {
+                    const h = Math.floor(diff / 60);
+                    const m = diff % 60;
+                    chronoTime.innerText = `${h}h${m.toString().padStart(2, '0')}`;
+                    chronoTime.classList.remove('text-yellow-300');
+                    chronoTime.classList.add('text-white');
+                }
+                chrono.classList.remove('-translate-y-full'); // Fait descendre le bandeau
+            } else {
+                chrono.classList.add('-translate-y-full'); // Plus d'activité après, on le cache
+            }
         }
         window.highlightCurrentEvent = highlightCurrentEvent;
 
         // --- Injection des notes (Avis Google) ---
         function injectRatings() {
-            // Moyennes des notes compilées via les avis publics
             const ratingsData = {
                 'panache': { score: '4.9', count: 5 },
                 'triomphe': { score: '4.8', count: 5 },
@@ -1056,10 +1142,8 @@
 
         // --- Initialisation Finale au chargement de la page ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Injection des notes
             injectRatings();
 
-            // Charge la progression sauvegardée localement (checkmarks)
             let tasks = JSON.parse(localStorage.getItem('puydufou-tasks') || '{}');
             document.querySelectorAll('.task-checkbox').forEach(btn => {
                 const taskId = btn.dataset.task;
@@ -1069,9 +1153,8 @@
             });
             updateProgressBar();
 
-            // Lancement du traqueur temporel
             highlightCurrentEvent();
-            setInterval(highlightCurrentEvent, 60000); // Actualisation chaque minute
+            setInterval(highlightCurrentEvent, 60000); 
         });
     </script>
 </body>
