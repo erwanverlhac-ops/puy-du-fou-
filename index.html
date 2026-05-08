@@ -86,9 +86,9 @@
         </div>
     </div>
 
-    <!-- Notifications Toast (invisibles par défaut) -->
+    <!-- Notifications Toast -->
     <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-800 px-6 py-3 rounded-xl shadow-2xl z-[10000] opacity-0 pointer-events-none transition-opacity duration-300 font-medium text-sm text-center w-max max-w-[90vw]">
-        Message de notification
+        Message
     </div>
 
     <!-- Bouton SOS Partager Position -->
@@ -99,9 +99,7 @@
 
     <!-- Bouton bascule Dark Mode -->
     <button onclick="toggleDarkMode()" class="fixed top-16 right-4 md:top-20 md:right-8 bg-white dark:bg-stone-800 text-stone-800 dark:text-yellow-400 p-3 rounded-full shadow-lg border border-stone-200 dark:border-stone-700 z-[9999] hover:scale-110 transition-transform" title="Basculer le thème">
-        <!-- Icône Lune (affichée en mode clair) -->
         <svg id="moon-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        <!-- Icône Soleil (affichée en mode sombre) -->
         <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
     </button>
 
@@ -110,11 +108,11 @@
         <!-- En-tête -->
         <header class="text-center space-y-4 pt-4">
             <div class="inline-block bg-red-900 dark:bg-red-800 text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase mb-2 shadow-sm">
-                Planification Logistique
+                Week-end du 09-10 Mai 2026
             </div>
             <h1 class="text-4xl md:text-5xl font-bold text-red-950 dark:text-red-400 theme-font transition-colors">Itinéraire Puy du Fou</h1>
             <p class="text-lg text-stone-600 dark:text-stone-400 max-w-2xl mx-auto transition-colors">
-                Programme optimisé pour 4 adultes sur un week-end. L'application calcule automatiquement vos temps de trajet et affiche les indispensables vitaux.
+                Programme mis à jour et recalibré selon le planning officiel. L'application calcule automatiquement vos temps de trajet et affiche les indispensables vitaux.
             </p>
         </header>
 
@@ -132,11 +130,11 @@
             </div>
         </div>
 
-        <!-- Filtres par jour (Mobile Friendly) -->
+        <!-- Filtres par jour -->
         <div class="flex flex-wrap gap-3 justify-center mb-4">
             <button onclick="filterDay('all')" id="btn-all" class="filter-btn bg-red-950 dark:bg-red-900 text-white px-6 py-2 rounded-full font-medium shadow-md transition-colors text-sm sm:text-base">Tout le week-end</button>
-            <button onclick="filterDay('sam')" id="btn-sam" class="filter-btn bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-600 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Samedi</button>
-            <button onclick="filterDay('dim')" id="btn-dim" class="filter-btn bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-600 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Dimanche</button>
+            <button onclick="filterDay('sam')" id="btn-sam" class="filter-btn bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-600 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Samedi 9</button>
+            <button onclick="filterDay('dim')" id="btn-dim" class="filter-btn bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-600 px-6 py-2 rounded-full font-medium shadow-sm transition-colors text-sm sm:text-base">Dimanche 10</button>
         </div>
 
         <!-- Tableau Principal -->
@@ -155,14 +153,15 @@
                     <tbody class="block md:table-row-group divide-y divide-stone-100 md:divide-none">
                         
                         <!-- SAMEDI -->
+                        <!-- 1. Panache -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-1', 'icon-sam-1')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">09h15 / 10h00</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">09h30 / 10h05</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h15 / 10h00</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h30 / 10h05</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
                                 <button onclick="toggleTask('panache', event)" data-task="panache" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
@@ -172,8 +171,8 @@
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('panache')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('panache')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     Entrée / Bourg 1900
                                 </a>
                             </td>
@@ -195,56 +194,58 @@
                             </td>
                         </tr>
 
+                        <!-- 2. Lance -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-2', 'icon-sam-2')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">11h00 / 11h45</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">11h30 / 12h00</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h00 / 11h45</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h30 / 12h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('triomphe', event)" data-task="triomphe" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('lance', event)" data-task="lance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Signe du Triomphe</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Secret de la Lance</span>
                                 <span id="icon-sam-2" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('triomphe')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Est (Stadium)
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('lance')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Ouest
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>10 min de marche depuis l'entrée.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Très spectaculaire, arrivez 30min avant.
                             </td>
                         </tr>
                         <tr id="details-sam-2" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
-                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Plongez dans l'arène du Stadium Gallo-Romain. Pour sauver leur vie, des prisonniers gaulois doivent remporter les Jeux du Cirque sous les yeux du gouverneur romain.
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Au XVe siècle, la jeune bergère Marguerite doit défendre seule le château fort, aidée par une lance aux pouvoirs magiques laissée par Jeanne d'Arc, lors d'une épopée chevaleresque.
                                     </div>
                                     <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 dark:md:border-red-400/30 md:pl-4 space-y-2">
-                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> 40 minutes</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> 29 minutes</div>
                                         <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Extérieur (Tribunes couvertes)</div>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
+                        <!-- 3. Dejeuner -->
                         <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-3', 'icon-sam-3')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">12h30 / 14h00</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">12h15 / 13h30</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h30 / 14h00</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h15 / 13h30</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('ecuyer', event)" data-task="ecuyer" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('ecuyer', event)" data-task="ecuyer" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Déjeuner : L'Écuyer Tranchant</span>
@@ -252,13 +253,13 @@
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('ecuyer')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Est
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('ecuyer')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Est (La Citadelle)
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Buffet à la Citadelle.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Traversez le parc vers l'Est pour le buffet.
                             </td>
                         </tr>
                         <tr id="details-sam-3" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 dark:bg-stone-700/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
@@ -275,33 +276,75 @@
                             </td>
                         </tr>
 
+                        <!-- 4. Triomphe -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-4', 'icon-sam-4')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">14h15 / 15h00</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">14h15 / 14h55</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">14h15 / 15h00</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">14h15 / 14h55</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('vikings', event)" data-task="vikings" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('triomphe', event)" data-task="triomphe" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Les Vikings</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Signe du Triomphe</span>
                                 <span id="icon-sam-4" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('vikings')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('triomphe')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Est (Stadium)
+                                </a>
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Proche de la zone de repas.
+                            </td>
+                        </tr>
+                        <tr id="details-sam-4" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Plongez dans l'arène du Stadium Gallo-Romain. Pour sauver leur vie, des prisonniers gaulois doivent remporter les Jeux du Cirque sous les yeux du gouverneur romain.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 dark:md:border-red-400/30 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> 40 minutes</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Extérieur (Tribunes couvertes)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 5. Vikings -->
+                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-5', 'icon-sam-5')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">15h15 / 15h45</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">15h15 / 15h45</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <button onclick="toggleTask('vikings', event)" data-task="vikings" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
+                                    <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </button>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Les Vikings</span>
+                                <span id="icon-sam-5" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('vikings')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     Est (Fort)
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Zone voisine du déjeuner.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Action garantie, attendez-vous à quelques éclaboussures.
                             </td>
                         </tr>
-                        <tr id="details-sam-4" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
+                        <tr id="details-sam-5" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
@@ -315,33 +358,34 @@
                             </td>
                         </tr>
 
-                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-5', 'icon-sam-5')">
+                        <!-- 6. Oiseaux -->
+                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-6', 'icon-sam-6')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">16h00 / 16h45</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">16h45 / 17h20</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">16h00 / 16h45</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">16h45 / 17h20</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('oiseaux', event)" data-task="oiseaux" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('oiseaux', event)" data-task="oiseaux" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Bal des Oiseaux Fantômes</span>
-                                <span id="icon-sam-5" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                                <span id="icon-sam-6" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('oiseaux')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('oiseaux')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     Nord
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Traversée de la forêt. Arrivez tôt.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Poétique. Baissez la tête pendant le balai final !
                             </td>
                         </tr>
-                        <tr id="details-sam-5" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
+                        <tr id="details-sam-6" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
@@ -355,65 +399,67 @@
                             </td>
                         </tr>
 
-                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-6', 'icon-sam-6')">
+                        <!-- 7. Mime et l'Etoile (Nouveau) -->
+                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-7', 'icon-sam-7')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">SAMEDI</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">17h45 / 18h30</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">18h15 / 18h45</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">17h45 / 18h30</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">18h15 / 18h45</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('lance', event)" data-task="lance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('mime', event)" data-task="mime" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Secret de la Lance</span>
-                                <span id="icon-sam-6" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors task-title">Le Mime et L'Étoile</span>
+                                <span id="icon-sam-7" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('lance')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Ouest
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('mime')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Bourg 1900
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>À proximité immédiate des Oiseaux.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Chef d'œuvre. Retour progressif vers l'entrée du parc.
                             </td>
                         </tr>
-                        <tr id="details-sam-6" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
+                        <tr id="details-sam-7" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
-                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Au XVe siècle, la jeune bergère Marguerite doit défendre seule le château fort, aidée par une lance aux pouvoirs magiques laissée par Jeanne d'Arc, lors d'une épopée chevaleresque.
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Plongez dans les débuts du cinéma en 1914. Dans un décor qui se déplace sous vos yeux en travelling géant, suivez l'histoire d'amour impossible entre un mime et une étoile montante du cinéma muet.
                                     </div>
                                     <div class="md:w-1/4 md:border-l-2 md:border-red-900/20 dark:md:border-red-400/30 md:pl-4 space-y-2">
-                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> 29 minutes</div>
-                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Extérieur (Tribunes couvertes)</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> ~ 30 minutes</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Intérieur (Salle climatisée)</div>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
-                        <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-7', 'icon-sam-7')">
+                        <!-- 8. Temps libre & Dîner -->
+                        <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-8', 'icon-sam-8')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">PAUSE</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">19h15 / 21h30</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">19h00 / 21h15</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">19h15 / 21h30</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">19h00 / 21h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('bourg_soir', event)" data-task="bourg_soir" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('bourg_soir', event)" data-task="bourg_soir" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="task-title transition-colors">Temps libre & Dîner</span>
-                                <span id="icon-sam-7" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                                <span id="icon-sam-8" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('bourg_soir')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('bourg_soir')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     Bourg 1900
                                 </a>
                             </td>
@@ -421,7 +467,7 @@
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Détente dans les boutiques.
                             </td>
                         </tr>
-                        <tr id="details-sam-7" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 dark:bg-stone-700/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
+                        <tr id="details-sam-8" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 dark:bg-stone-700/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="sam">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-full">
@@ -431,40 +477,41 @@
                             </td>
                         </tr>
 
-                        <tr class="itinerary-row block md:table-row bg-orange-50 md:bg-orange-50/30 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-900/50 md:border-none rounded-xl md:rounded-none mb-8 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-8', 'icon-sam-8')">
+                        <!-- 9. Noces -->
+                        <tr class="itinerary-row block md:table-row bg-orange-50 md:bg-orange-50/30 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-900/50 md:border-none rounded-xl md:rounded-none mb-8 md:mb-0 shadow-sm md:shadow-none hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="sam" onclick="toggleDetails('details-sam-9', 'icon-sam-9')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-orange-100 dark:border-orange-900/50 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-orange-800 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">NOCTURNE</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">21h45 / 22h30</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">21h45 / 22h15</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">21h45 / 22h30</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">21h45 / 22h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('noces', event)" data-task="noces" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-orange-300 dark:border-orange-700 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('noces', event)" data-task="noces" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-orange-300 dark:border-orange-700 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
                                 <span class="font-bold text-orange-900 dark:text-orange-400 text-xl md:text-lg theme-font task-title transition-colors">Les Noces de Feu</span>
-                                <span id="icon-sam-8" class="float-right md:float-none md:ml-2 text-orange-600 dark:text-orange-400 inline-block transition-transform duration-300">▼</span>
+                                <span id="icon-sam-9" class="float-right md:float-none md:ml-2 text-orange-600 dark:text-orange-400 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('noces')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('noces')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     Centre (Lac)
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic font-medium mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Flânez 20 min au Bourg après pour éviter les bouchons du parking.
+                                <span class="md:hidden font-semibold text-orange-400 text-xs uppercase mr-2 block mb-1">Conseil:</span>Prenez place sur les gradins 30 min avant.
                             </td>
                         </tr>
-                        <tr id="details-sam-8" class="details-row hidden block md:table-row bg-orange-100 md:bg-orange-100/50 dark:bg-orange-900/30 border-b border-orange-200 dark:border-orange-900/50 md:border-none rounded-b-xl" data-day="sam">
+                        <tr id="details-sam-9" class="details-row hidden block md:table-row bg-orange-100 md:bg-orange-100/50 dark:bg-orange-900/30 border-b border-orange-200 dark:border-orange-900/50 md:border-none rounded-b-xl" data-day="sam">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-800 dark:text-stone-300">
                                     <div class="md:w-3/4">
                                         <strong class="text-orange-900 dark:text-orange-400 block mb-1">À propos du spectacle :</strong> À la tombée de la nuit, assistez au plus romantique des mariages. Muses et farfadets célèbrent sur l'étang les noces fantastiques du pianiste virtuose et de la muse violoniste.
                                     </div>
                                     <div class="md:w-1/4 md:border-l-2 md:border-orange-900/20 dark:md:border-orange-400/30 md:pl-4 space-y-2">
-                                        <div><strong class="text-orange-900 dark:text-orange-400">⏱ Durée :</strong> 30 minutes</div>
+                                        <div><strong class="text-orange-900 dark:text-orange-400">⏱ Durée :</strong> ~ 30 minutes</div>
                                         <div><strong class="text-orange-900 dark:text-orange-400">📍 Type :</strong> Extérieur (Lac)</div>
                                     </div>
                                 </div>
@@ -477,6 +524,7 @@
                         </tr>
 
                         <!-- DIMANCHE -->
+                        <!-- 1. Renaissance -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-1', 'icon-dim-1')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
@@ -486,104 +534,24 @@
                             </td>
                             <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">09h30 / 10h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('royaume', event)" data-task="royaume" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('renaissance', event)" data-task="renaissance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Le Premier Royaume</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">La Renaissance du Château</span>
                                 <span id="icon-dim-1" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('royaume')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Sud-Ouest
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('renaissance')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Ouest
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Premier passage, faible affluence.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Visite fluide du château.
                             </td>
                         </tr>
                         <tr id="details-dim-1" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
-                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
-                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
-                                    <div class="md:w-3/4">
-                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Au Ve siècle, l'Empire Romain s'effondre. Suivez le destin de Clovis le roi Franc à travers un parcours immersif bluffant, mêlant décors somptueux et effets aquatiques.
-                                    </div>
-                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 dark:md:border-green-400/30 md:pl-4 space-y-2">
-                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> ~ 20 minutes</div>
-                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Intérieur (Parcours continu)</div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-2', 'icon-dim-2')">
-                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
-                                <div class="flex items-center justify-between md:block">
-                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">10h30 / 11h15</span>
-                                </div>
-                            </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">10h30 / 11h15</td>
-                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('verdun', event)" data-task="verdun" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
-                                    <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Les Amoureux de Verdun</span>
-                                <span id="icon-dim-2" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
-                            </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('verdun')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Ouest
-                                </a>
-                            </td>
-                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Parcours continu dans les tranchées.
-                            </td>
-                        </tr>
-                        <tr id="details-dim-2" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
-                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
-                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
-                                    <div class="md:w-3/4">
-                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Hiver 1916. Vous êtes invités à cheminer dans les tranchées avec les Poilus. À la veille de Noël, la fumée envahit les galeries et le sol tremble sous les bombardements.
-                                    </div>
-                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 dark:md:border-green-400/30 md:pl-4 space-y-2">
-                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> ~ 15 minutes</div>
-                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Intérieur (Parcours continu)</div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-3', 'icon-dim-3')">
-                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
-                                <div class="flex items-center justify-between md:block">
-                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">11h30 / 12h15</span>
-                                </div>
-                            </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h30 / 12h15</td>
-                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('renaissance', event)" data-task="renaissance" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
-                                    <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">La Renaissance du Château</span>
-                                <span id="icon-dim-3" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
-                            </td>
-                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('renaissance')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Ouest
-                                </a>
-                            </td>
-                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Visite du château historique.
-                            </td>
-                        </tr>
-                        <tr id="details-dim-3" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
@@ -597,25 +565,67 @@
                             </td>
                         </tr>
 
-                        <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-4', 'icon-dim-4')">
-                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
+                        <!-- 2. Royaume -->
+                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-2', 'icon-dim-2')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
-                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">12h30 / 13h30</span>
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">11h15 / 12h00</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h30 / 13h30</td>
-                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
-                                <button onclick="toggleTask('gare', event)" data-task="gare" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">11h15 / 12h00</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <button onclick="toggleTask('royaume', event)" data-task="royaume" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="task-title transition-colors">Déjeuner : Roulotte de la Gare</span>
-                                <span id="icon-dim-4" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Le Premier Royaume</span>
+                                <span id="icon-dim-2" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('gare')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('royaume')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Sud-Ouest
+                                </a>
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Parcours en continu.
+                            </td>
+                        </tr>
+                        <tr id="details-dim-2" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Au Ve siècle, l'Empire Romain s'effondre. Suivez le destin de Clovis le roi Franc à travers un parcours immersif bluffant, mêlant décors somptueux et effets aquatiques.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 dark:md:border-green-400/30 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> ~ 20 minutes</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Intérieur (Parcours continu)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 3. Dejeuner dimanche -->
+                        <tr class="itinerary-row block md:table-row bg-stone-50 md:bg-stone-50 dark:bg-stone-800/50 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-stone-100 dark:hover:bg-stone-700 transition-all duration-300 p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-3', 'icon-dim-3')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-200 dark:border-stone-700 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-stone-400 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">REPAS</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">12h15 / 13h15</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">12h15 / 13h15</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4 font-semibold text-stone-700 dark:text-stone-200 text-lg md:text-base">
+                                <button onclick="toggleTask('gare', event)" data-task="gare" class="task-checkbox float-left mr-3 mt-0 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
+                                    <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </button>
+                                <span class="task-title transition-colors">Déjeuner : Roulotte de la Gare</span>
+                                <span id="icon-dim-3" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('gare')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                     Bourg 1900
                                 </a>
                             </td>
@@ -623,7 +633,7 @@
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Option nomade (sandwichs/fouées).
                             </td>
                         </tr>
-                        <tr id="details-dim-4" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 dark:bg-stone-700/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
+                        <tr id="details-dim-3" class="details-row hidden block md:table-row bg-stone-100 md:bg-stone-100/80 dark:bg-stone-700/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
@@ -637,81 +647,124 @@
                             </td>
                         </tr>
 
+                        <!-- 4. Richelieu (Nouveau) -->
+                        <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-4', 'icon-dim-4')">
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
+                                <div class="flex items-center justify-between md:block">
+                                    <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">13h45 / 14h20</span>
+                                </div>
+                            </td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">13h45 / 14h20</td>
+                            <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
+                                <button onclick="toggleTask('richelieu', event)" data-task="richelieu" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
+                                    <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </button>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Mousquetaire de Richelieu</span>
+                                <span id="icon-dim-4" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
+                            </td>
+                            <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('richelieu')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Le Grand Carrousel
+                                </a>
+                            </td>
+                            <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Spectacle équestre incontournable !
+                            </td>
+                        </tr>
+                        <tr id="details-dim-4" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
+                            <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
+                                <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
+                                    <div class="md:w-3/4">
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Tremblez au rythme des duels à l'épée, et laissez-vous porter par les ballets de flamenco et les prouesses équestres spectaculaires dans la plus grande salle de théâtre du monde.
+                                    </div>
+                                    <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 dark:md:border-green-400/30 md:pl-4 space-y-2">
+                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> 32 minutes</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Intérieur (Théâtre XXL)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 5. Verdun -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-5', 'icon-dim-5')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">13h45 / 15h30</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">14h30 / 15h15</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">13h45 / 15h30</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">14h30 / 15h15</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('artisans', event)" data-task="artisans" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('verdun', event)" data-task="verdun" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Village XVIIIème & Artisans</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Les Amoureux de Verdun</span>
                                 <span id="icon-dim-5" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('artisans')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Sud
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('verdun')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Ouest
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Rencontre avec les artisans d'art.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Parcours continu saisissant.
                             </td>
                         </tr>
                         <tr id="details-dim-5" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
-                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos de cette zone :</strong> Déambulez dans un authentique village du XVIIIe siècle où le temps s'est arrêté. Observez le travail minutieux des artisans d'art : tailleur de pierre, forgeron, maître-verrier et enlumineur.
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos du spectacle :</strong> Hiver 1916. Vous êtes invités à cheminer dans les tranchées avec les Poilus. À la veille de Noël, la fumée envahit les galeries et le sol tremble sous les bombardements.
                                     </div>
                                     <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 dark:md:border-green-400/30 md:pl-4 space-y-2">
-                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> Temps libre</div>
-                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Extérieur / Ateliers</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> ~ 15 minutes</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Intérieur (Parcours continu)</div>
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
+                        <!-- 6. Artisans -->
                         <tr class="itinerary-row block md:table-row bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 md:border-none md:border-b md:dark:border-b-stone-700 rounded-xl md:rounded-none mb-4 md:mb-0 shadow-sm md:shadow-none hover:bg-green-50 dark:hover:bg-stone-700 transition-all duration-300 group p-4 md:p-0 cursor-pointer" data-day="dim" onclick="toggleDetails('details-dim-6', 'icon-dim-6')">
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 border-b border-stone-100 dark:border-stone-700 md:border-none">
                                 <div class="flex items-center justify-between md:block">
                                     <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-sm">DIMANCHE</span>
-                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">15h45 / 17h30</span>
+                                    <span class="text-stone-600 dark:text-stone-400 font-medium md:hidden text-sm">15h30 / 17h00</span>
                                 </div>
                             </td>
-                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">15h45 / 17h30</td>
+                            <td class="hidden md:table-cell py-4 px-6 text-stone-600 dark:text-stone-300 font-medium">15h30 / 17h00</td>
                             <td class="block md:table-cell py-3 px-0 md:px-6 md:py-4">
-                                <button onclick="toggleTask('daims', event)" data-task="daims" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm" title="Marquer comme fait">
+                                <button onclick="toggleTask('artisans', event)" data-task="artisans" class="task-checkbox float-left mr-3 mt-0.5 w-6 h-6 rounded-full border-2 border-stone-300 dark:border-stone-500 flex items-center justify-center transition-all focus:outline-none hover:border-emerald-500 dark:hover:border-emerald-400 shadow-sm">
                                     <svg class="w-4 h-4 text-white opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 </button>
-                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Clairière aux Daims & Nature</span>
+                                <span class="font-bold text-stone-900 dark:text-stone-100 text-xl md:text-lg theme-font group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors task-title">Villages & Daims</span>
                                 <span id="icon-dim-6" class="float-right md:float-none md:ml-2 text-stone-400 dark:text-stone-500 inline-block transition-transform duration-300">▼</span>
                             </td>
                             <td class="block md:table-cell py-1 px-0 md:px-6 md:py-4 text-sm md:text-base">
                                 <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2">Zone:</span>
-                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('daims')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800" title="Voir le point sur la carte ci-dessous">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    Forêt
+                                <a href="javascript:void(0)" onclick="event.stopPropagation(); focusOnMap('artisans')" class="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2 py-1 rounded-md transition-colors font-medium text-sm border border-blue-100 dark:border-blue-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    Sud & Forêt
                                 </a>
                             </td>
                             <td class="block md:table-cell py-2 px-0 md:px-6 md:py-4 text-sm text-stone-500 dark:text-stone-400 italic mt-2 md:mt-0">
-                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Balade calme avant le départ.
+                                <span class="md:hidden font-semibold text-stone-400 dark:text-stone-500 text-xs uppercase mr-2 block mb-1">Conseil:</span>Balade paisible avant le départ.
                             </td>
                         </tr>
                         <tr id="details-dim-6" class="details-row hidden block md:table-row bg-stone-50 md:bg-stone-50/80 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-700 md:border-none rounded-b-xl" data-day="dim">
                             <td colspan="5" class="block md:table-cell py-4 px-4 md:px-8 border-b border-stone-200 dark:border-stone-700">
                                 <div class="flex flex-col md:flex-row gap-4 text-sm text-stone-700 dark:text-stone-300">
                                     <div class="md:w-3/4">
-                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos de cette promenade :</strong> Avant de reprendre la route, ressourcez-vous dans cette vaste clairière boisée où les daims évoluent en toute sérénité. Une véritable bulle de nature au cœur du parc.
+                                        <strong class="text-stone-900 dark:text-stone-200 block mb-1">À propos de cette zone :</strong> Déambulez dans l'authentique village du XVIIIe siècle pour observer le travail des artisans d'art, puis ressourcez-vous dans la vaste clairière voisine où les daims évoluent en toute sérénité.
                                     </div>
                                     <div class="md:w-1/4 md:border-l-2 md:border-green-900/20 dark:md:border-green-400/30 md:pl-4 space-y-2">
                                         <div><strong class="text-stone-900 dark:text-stone-200">⏱ Durée :</strong> Temps libre</div>
-                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Extérieur (Nature)</div>
+                                        <div><strong class="text-stone-900 dark:text-stone-200">📍 Type :</strong> Extérieur / Ateliers</div>
                                     </div>
                                 </div>
                             </td>
@@ -743,7 +796,7 @@
         <!-- Section Info / Sources -->
         <div class="bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 p-6 rounded-xl text-sm border border-stone-300 dark:border-stone-700 transition-colors">
             <h3 class="font-bold mb-2 uppercase tracking-wide">Note Importante</h3>
-            <p class="mb-4">Les horaires des spectacles varient chaque jour. Il est impératif de vérifier les horaires exacts la veille de votre visite via l'application mobile ou le site officiel.</p>
+            <p class="mb-4">Ce programme a été recalibré sur la base du <a href="https://www.puydufou.com/france/fr/programme-du-jour" target="_blank" class="text-blue-600 hover:underline">planning officiel du parc</a> pour le week-end du 9 et 10 mai 2026. L'ajout des spectacles "Le Mime et l'Étoile" et "Mousquetaire de Richelieu" optimise considérablement votre journée.</p>
         </div>
 
     </div>
@@ -762,7 +815,7 @@
         }
         window.toggleDarkMode = toggleDarkMode;
 
-        // --- Notifications Toast (Alternative à alert()) ---
+        // --- Notifications Toast ---
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.innerText = message;
@@ -831,7 +884,6 @@
 
         function toggleTask(taskId, event) {
             event.stopPropagation(); 
-            
             let tasks = JSON.parse(localStorage.getItem('puydufou-tasks') || '{}');
             tasks[taskId] = !tasks[taskId];
             localStorage.setItem('puydufou-tasks', JSON.stringify(tasks));
@@ -888,7 +940,7 @@
 
             const mainRows = document.querySelectorAll('.itinerary-row');
             const detailRows = document.querySelectorAll('.details-row');
-            const walkRows = document.querySelectorAll('.walking-time-row'); // Nouveau : Gère l'affichage des temps de marche
+            const walkRows = document.querySelectorAll('.walking-time-row'); 
             const sep = document.getElementById('row-separator');
 
             mainRows.forEach(row => {
@@ -925,19 +977,20 @@
 
         const markersData = {
             'panache': { title: 'Le Dernier Panache', coords: [46.89007, -0.933977], color: '#ea580c' },
-            'triomphe': { title: 'Le Signe du Triomphe', coords: [46.884938, -0.92783], color: '#ea580c' },
+            'lance': { title: 'Le Secret de la Lance', coords: [46.891271, -0.931176], color: '#ea580c' },
             'ecuyer': { title: 'L\'Écuyer Tranchant (Citadelle)', coords: [46.8845, -0.9230], color: '#78716c' },
+            'triomphe': { title: 'Le Signe du Triomphe', coords: [46.884938, -0.92783], color: '#ea580c' },
             'vikings': { title: 'Les Vikings', coords: [46.886485, -0.929568], color: '#ea580c' },
             'oiseaux': { title: 'Bal des Oiseaux Fantômes', coords: [46.888185, -0.92722], color: '#ea580c' },
-            'lance': { title: 'Le Secret de la Lance', coords: [46.891271, -0.931176], color: '#ea580c' },
+            'mime': { title: 'Le Mime et l\'Étoile', coords: [46.889500, -0.934800], color: '#ea580c' },
             'bourg_soir': { title: 'Bourg 1900 (Temps libre)', coords: [46.890500, -0.934000], color: '#78716c' },
             'noces': { title: 'Les Noces de Feu (Le Lac)', coords: [46.889797, -0.929211], color: '#9a3412' },
-            'royaume': { title: 'Le Premier Royaume', coords: [46.888606, -0.930589], color: '#059669' },
-            'verdun': { title: 'Les Amoureux de Verdun', coords: [46.888665, -0.931378], color: '#059669' },
             'renaissance': { title: 'La Renaissance du Château', coords: [46.892119, -0.929992], color: '#059669' },
+            'royaume': { title: 'Le Premier Royaume', coords: [46.888606, -0.930589], color: '#059669' },
             'gare': { title: 'La Roulotte de la Gare', coords: [46.890800, -0.934500], color: '#78716c' },
-            'artisans': { title: 'Village XVIIIème & Artisans', coords: [46.887500, -0.929000], color: '#059669' },
-            'daims': { title: 'Clairière aux Daims & Nature', coords: [46.885500, -0.926000], color: '#059669' }
+            'richelieu': { title: 'Mousquetaire de Richelieu', coords: [46.892000, -0.932500], color: '#ea580c' },
+            'verdun': { title: 'Les Amoureux de Verdun', coords: [46.888665, -0.931378], color: '#059669' },
+            'artisans': { title: 'Villages & Daims', coords: [46.887500, -0.929000], color: '#059669' }
         };
 
         const mapMarkers = {};
@@ -980,7 +1033,6 @@
         const waterIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚰', iconSize: [28,28], iconAnchor: [14, 14]});
         const carIcon = L.divIcon({className: 'text-2xl drop-shadow-md', html: '🚗', iconSize: [28,28], iconAnchor: [14, 14]});
 
-        // Préparation des marqueurs Toilettes/Eau
         poiData.toilets.forEach(poi => {
             poiMarkers.toilets.push(L.marker(poi.coords, {icon: toiletIcon}).bindPopup(`<strong>${poi.name}</strong>`));
         });
@@ -1029,14 +1081,14 @@
 
         // --- Algorithme de Calcul Inter-Étapes (Haversine Formula) ---
         function getDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Rayon de la Terre en km
+            const R = 6371; 
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
                 Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
                 Math.sin(dLon/2) * Math.sin(dLon/2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            return (R * c) * 1000; // Distance en mètres
+            return (R * c) * 1000; 
         }
 
         function injectWalkingTimes() {
@@ -1050,12 +1102,10 @@
                     const coords1 = markersData[currentBtn.dataset.task].coords;
                     const coords2 = markersData[nextBtn.dataset.task].coords;
                     
-                    // Calcul de la distance et du temps (Vitesse estimée : 75m par minute, soit ~4.5 km/h)
                     const dist = getDistance(coords1[0], coords1[1], coords2[0], coords2[1]);
                     let mins = Math.ceil(dist / 75); 
                     if (mins < 1) mins = 1;
 
-                    // Création de l'étiquette de temps de trajet
                     const tr = document.createElement('tr');
                     tr.className = `walking-time-row block md:table-row bg-transparent pointer-events-none`;
                     tr.setAttribute('data-day', day);
@@ -1068,7 +1118,6 @@
                         </td>
                     `;
                     
-                    // Insertion juste après la ligne de "Détails" (A propos du spectacle)
                     const detailsRow = rows[i].nextElementSibling;
                     if (detailsRow && detailsRow.classList.contains('details-row')) {
                         detailsRow.after(tr);
@@ -1080,7 +1129,7 @@
         // --- Surligneur Temporel (Traqueur "En Cours") & Smart Chrono ---
         function highlightCurrentEvent() {
             const now = new Date();
-            const dayOfWeek = now.getDay(); // 0 = Dimanche, 6 = Samedi
+            const dayOfWeek = now.getDay(); 
             const chrono = document.getElementById('smart-chrono');
             
             if (dayOfWeek !== 0 && dayOfWeek !== 6) {
@@ -1091,24 +1140,26 @@
             const currentDayStr = dayOfWeek === 6 ? 'sam' : 'dim';
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
+            // Refonte des horaires pour correspondre EXACTEMENT aux images 9 et 10 mai 2026
             const timeSlots = {
                 'sam': [
-                    { task: 'panache', start: 9*60, end: 10*60+45 },
-                    { task: 'triomphe', start: 10*60+45, end: 12*60+30 },
-                    { task: 'ecuyer', start: 12*60+30, end: 14*60+10 },
-                    { task: 'vikings', start: 14*60+10, end: 15*60+30 },
-                    { task: 'oiseaux', start: 15*60+30, end: 17*60+20 },
-                    { task: 'lance', start: 17*60+20, end: 19*60+0 },
+                    { task: 'panache', start: 9*60+30, end: 10*60+5 },
+                    { task: 'lance', start: 11*60+30, end: 12*60+0 },
+                    { task: 'ecuyer', start: 12*60+15, end: 13*60+30 },
+                    { task: 'triomphe', start: 14*60+15, end: 14*60+55 },
+                    { task: 'vikings', start: 15*60+15, end: 15*60+45 },
+                    { task: 'oiseaux', start: 16*60+45, end: 17*60+20 },
+                    { task: 'mime', start: 18*60+15, end: 18*60+45 },
                     { task: 'bourg_soir', start: 19*60+0, end: 21*60+15 },
-                    { task: 'noces', start: 21*60+15, end: 23*60+30 }
+                    { task: 'noces', start: 21*60+45, end: 22*60+15 }
                 ],
                 'dim': [
-                    { task: 'royaume', start: 9*60, end: 10*60+20 },
-                    { task: 'verdun', start: 10*60+20, end: 11*60+20 },
-                    { task: 'renaissance', start: 11*60+20, end: 12*60+20 },
-                    { task: 'gare', start: 12*60+20, end: 13*60+40 },
-                    { task: 'artisans', start: 13*60+40, end: 15*60+40 },
-                    { task: 'daims', start: 15*60+40, end: 18*60+0 }
+                    { task: 'renaissance', start: 9*60+30, end: 10*60+15 },
+                    { task: 'royaume', start: 11*60+15, end: 12*60+0 },
+                    { task: 'gare', start: 12*60+15, end: 13*60+15 },
+                    { task: 'richelieu', start: 13*60+45, end: 14*60+20 },
+                    { task: 'verdun', start: 14*60+30, end: 15*60+15 },
+                    { task: 'artisans', start: 15*60+30, end: 17*60+0 }
                 ]
             };
 
@@ -1179,19 +1230,20 @@
         function injectRatings() {
             const ratingsData = {
                 'panache': { score: '4.9', count: 5 },
-                'triomphe': { score: '4.8', count: 5 },
+                'lance': { score: '4.8', count: 5 },
                 'ecuyer': { score: '4.1', count: 4 },
+                'triomphe': { score: '4.8', count: 5 },
                 'vikings': { score: '4.8', count: 5 },
                 'oiseaux': { score: '4.9', count: 5 },
-                'lance': { score: '4.8', count: 5 },
+                'mime': { score: '4.9', count: 5 },
                 'bourg_soir': { score: '4.6', count: 5 },
                 'noces': { score: '4.7', count: 5 },
-                'royaume': { score: '4.7', count: 5 },
-                'verdun': { score: '4.8', count: 5 },
                 'renaissance': { score: '4.5', count: 4 },
+                'royaume': { score: '4.7', count: 5 },
                 'gare': { score: '4.2', count: 4 },
-                'artisans': { score: '4.6', count: 5 },
-                'daims': { score: '4.5', count: 4 }
+                'richelieu': { score: '4.8', count: 5 },
+                'verdun': { score: '4.8', count: 5 },
+                'artisans': { score: '4.6', count: 5 }
             };
 
             const starSvgFull = `<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
@@ -1226,9 +1278,8 @@
         // --- Initialisation Finale au chargement de la page ---
         document.addEventListener('DOMContentLoaded', () => {
             injectRatings();
-            injectWalkingTimes(); // Injection des temps de trajet calculés par GPS
+            injectWalkingTimes(); 
 
-            // Restaure la voiture si mémorisée
             const savedCar = localStorage.getItem('puydufou-car');
             if(savedCar) {
                 carMarker = L.marker(JSON.parse(savedCar), {icon: carIcon}).addTo(map).bindPopup(`<strong>🚗 Ma Voiture</strong>`);
